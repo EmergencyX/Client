@@ -4,10 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EmergencyX_Client"
+		xmlns:s="clr-namespace:EmergencyX_Client.Properties"
         mc:Ignorable="d"
-        Title="Emergency Explorer" Height="900" Width="1250" SizeToContent="WidthAndHeight" MinWidth="1250" MinHeight="900">
-    <Grid Cursor="Arrow" Name="EmergencyXClient">
-        <Label x:Name="appHeadline" Content="Emergency X" HorizontalAlignment="Left" Margin="41,31,0,0" VerticalAlignment="Top" FontSize="48" FontFamily="Calibri" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" Cursor="Arrow">
+        Title="{x:Static s:Resources.appTitle}" Height="900" Width="1250" SizeToContent="WidthAndHeight" MinWidth="1250" MinHeight="900">
+    <Grid Cursor="Arrow" Name="EmergencyXClient" x:Uid="EmergencyXClient">
+        <Label x:Name="appHeadline" Content="{x:Static s:Resources.appName}" HorizontalAlignment="Left" Margin="41,31,0,0" VerticalAlignment="Top" FontSize="48" FontFamily="Calibri" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" Cursor="Arrow">
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -18,11 +19,11 @@
             </Label.RenderTransform>
         </Label>
         <Menu x:Name="menu" HorizontalAlignment="Right" Height="128" Margin="0,15,0,0" Width="120" VerticalAlignment="Top" Focusable="False" IsHitTestVisible="True" TabIndex="2">
-            <Button Content="Anmelden" FontFamily="Calibri" Padding="5,3" UseLayoutRounding="False" Width="100" FontSize="16" Margin="3,7,3,3.5" ToolTip="Anmeldung durchführen" />
-            <Button Content="Einstellungen" FontFamily="Calibri" Padding="5,3" UseLayoutRounding="False" Width="100" FontSize="16" Margin="3,7,3,3.5"/>
+			<Button x:Name="signIn" Content="{x:Static s:Resources.signInButtonContent}" FontFamily="Calibri" Padding="5,3" UseLayoutRounding="False" Width="100" FontSize="16" Margin="3,7,3,3.5" ToolTip="{x:Static s:Resources.signInButtonToolTip}" />
+            <Button x:Name="settings" Content="Einstellungen" FontFamily="Calibri" Padding="5,3" UseLayoutRounding="False" Width="100" FontSize="16" Margin="3,7,3,3.5" ToolTip="Einstellungen festlegen"/>
         </Menu>
         <Grid x:Name="modOverview" Margin="100,180,260,130" Background="#FF8D8C8D" AllowDrop="True">
-            <TextBlock x:Name="textBlock" Margin="180.021,254.703,160.731,243.743" TextWrapping="Wrap" FontFamily="Calibri" FontSize="40" FontWeight="Bold" Cursor="No"><Run Text="Emergency"/><Run Text=" 5"/><Run Text=" nicht "/><Run Text="i"/><Run Text="nstalliert"/></TextBlock>
+			<TextBlock x:Name="textBlock" Margin="180.021,254.703,160.731,243.743" TextWrapping="Wrap" FontFamily="Calibri" FontSize="40" FontWeight="Bold" ><Run Name="notInstalled" Text="{x:Static s:Resources.emergencyIsNotInstalled}" /><Run Name="isInstalled" /></TextBlock>
         </Grid>
 
     </Grid>

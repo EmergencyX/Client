@@ -118,33 +118,33 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="appName" xml:space="preserve">
-    <value>Emergency X</value>
+    <value>Emergeny X</value>
   </data>
   <data name="appTitle" xml:space="preserve">
     <value>Emergency Explorer</value>
   </data>
   <data name="emergencyIsInstalled" xml:space="preserve">
-    <value>Emergency is installed</value>
+    <value>Emergency ist installiert</value>
   </data>
   <data name="emergencyIsNotInstalled" xml:space="preserve">
-    <value>Emergency is not installed</value>
+    <value>Emergency ist nicht installiert</value>
   </data>
   <data name="settingsButtonContent" xml:space="preserve">
-    <value>Settings</value>
+    <value>Einstellungen</value>
   </data>
   <data name="settingsButtonToolTip" xml:space="preserve">
-    <value>Modify settings</value>
+    <value>Einstellungen ändern</value>
   </data>
   <data name="signInButtonContent" xml:space="preserve">
-    <value>Sign in</value>
+    <value>Anmelden</value>
   </data>
   <data name="signInButtonToolTip" xml:space="preserve">
-    <value>Perform login</value>
+    <value>Anmeldung durchführen</value>
   </data>
   <data name="signOutButtonContent" xml:space="preserve">
-    <value>Sign out</value>
+    <value>Abmelden</value>
   </data>
   <data name="signOutButtonToolTip" xml:space="preserve">
-    <value>Perform logout</value>
+    <value>Abmeldung durchführen</value>
   </data>
 </root>
