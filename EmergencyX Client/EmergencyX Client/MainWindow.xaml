@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EmergencyX_Client"
         mc:Ignorable="d"
-        Title="Emergency Explorer" Height="900" Width="1250" SizeToContent="WidthAndHeight">
-    <Grid>
+        Title="Emergency Explorer" Height="900" Width="1250" SizeToContent="WidthAndHeight" MinWidth="1250" MinHeight="900">
+    <Grid Cursor="Arrow" Name="EmergencyXClient">
         <Label x:Name="appHeadline" Content="Emergency X" HorizontalAlignment="Left" Margin="41,31,0,0" VerticalAlignment="Top" FontSize="48" FontFamily="Calibri" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" Cursor="Arrow">
             <Label.RenderTransform>
                 <TransformGroup>
@@ -17,9 +17,13 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <Menu x:Name="menu" HorizontalAlignment="Left" Height="198" Margin="1012,10,0,0" VerticalAlignment="Top" Width="220">
-            <Button BorderBrush="#FF3C3838" Content="Anmelden" ToolTip="Anmeldung durchführen" Margin="4" BorderThickness="3,1,1,1" Background="#FFDDDDDD" Padding="5"/>
+        <Menu x:Name="menu" HorizontalAlignment="Right" Height="128" Margin="0,15,0,0" Width="120" VerticalAlignment="Top" Focusable="False" IsHitTestVisible="True" TabIndex="2">
+            <Button Content="Anmelden" FontFamily="Calibri" Padding="5,3" UseLayoutRounding="False" Width="100" FontSize="16" Margin="3,7,3,3.5" ToolTip="Anmeldung durchführen" />
+            <Button Content="Einstellungen" FontFamily="Calibri" Padding="5,3" UseLayoutRounding="False" Width="100" FontSize="16" Margin="3,7,3,3.5"/>
         </Menu>
+        <Grid x:Name="modOverview" Margin="100,180,260,130" Background="#FF8D8C8D" AllowDrop="True">
+            <TextBlock x:Name="textBlock" Margin="180.021,254.703,160.731,243.743" TextWrapping="Wrap" FontFamily="Calibri" FontSize="40" FontWeight="Bold" Cursor="No"><Run Text="Emergency"/><Run Text=" 5"/><Run Text=" nicht "/><Run Text="i"/><Run Text="nstalliert"/></TextBlock>
+        </Grid>
 
     </Grid>
 </Window>
