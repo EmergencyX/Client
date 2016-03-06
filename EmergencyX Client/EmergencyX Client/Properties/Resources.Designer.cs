@@ -79,6 +79,33 @@ namespace EmergencyX_Client.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Cancel ähnelt.
+        /// </summary>
+        public static string btnCancel {
+            get {
+                return ResourceManager.GetString("btnCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Save ähnelt.
+        /// </summary>
+        public static string btnSave {
+            get {
+                return ResourceManager.GetString("btnSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Emergency installation path ähnelt.
+        /// </summary>
+        public static string emergencyInstallationPath {
+            get {
+                return ResourceManager.GetString("emergencyInstallationPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Emergency is installed ähnelt.
         /// </summary>
         public static string emergencyIsInstalled {
@@ -97,6 +124,24 @@ namespace EmergencyX_Client.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Error while reading the settings. ähnelt.
+        /// </summary>
+        public static string errErrorOnSettingsRead {
+            get {
+                return ResourceManager.GetString("errErrorOnSettingsRead", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Error while saving the settings. ähnelt.
+        /// </summary>
+        public static string errErrorOnSettingsSave {
+            get {
+                return ResourceManager.GetString("errErrorOnSettingsSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Settings ähnelt.
         /// </summary>
         public static string settingsButtonContent {
@@ -111,6 +156,15 @@ namespace EmergencyX_Client.Properties {
         public static string settingsButtonToolTip {
             get {
                 return ResourceManager.GetString("settingsButtonToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Settings ähnelt.
+        /// </summary>
+        public static string settingsTitle {
+            get {
+                return ResourceManager.GetString("settingsTitle", resourceCulture);
             }
         }
         

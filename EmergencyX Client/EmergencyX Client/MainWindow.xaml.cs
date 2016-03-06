@@ -20,9 +20,29 @@ namespace EmergencyX_Client
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
-    }
+		public MainWindow()
+		{
+			InitializeComponent();
+
+			//if Emergency 5 is installed and no mods are installed the text "Emergency is installed" should be displayed
+			//if its insatlled and there are mods the mods should be displayed 
+			//otherwise there should be the text "Emergency is not installed"
+			//
+
+			EmergencyInstallation.setEmergencyInstallationPath(AppConfig.readFromAppConfig("emergencyInstallationPath"));
+
+			if(EmergencyInstallation.getIsEmergenyInstalled() == true) {
+				isEmergencyInstalled.Content = Properties.Resources.emergencyIsInstalled;
+			} else {
+				isEmergencyInstalled.Content = Properties.Resources.emergencyIsNotInstalled;
+			}
+			
+		}
+
+		private void settingsClick(object sender, RoutedEventArgs e)
+		{
+			Settings emergencyXSettings = new Settings();
+			emergencyXSettings.Show();
+		}
+	}
 }

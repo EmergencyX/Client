@@ -123,17 +123,35 @@
   <data name="appTitle" xml:space="preserve">
     <value>Emergency Explorer</value>
   </data>
+  <data name="btnCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="btnSave" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="emergencyInstallationPath" xml:space="preserve">
+    <value>Emergency installation path</value>
+  </data>
   <data name="emergencyIsInstalled" xml:space="preserve">
     <value>Emergency is installed</value>
   </data>
   <data name="emergencyIsNotInstalled" xml:space="preserve">
     <value>Emergency is not installed</value>
   </data>
+  <data name="errErrorOnSettingsRead" xml:space="preserve">
+    <value>Error while reading the settings.</value>
+  </data>
+  <data name="errErrorOnSettingsSave" xml:space="preserve">
+    <value>Error while saving the settings.</value>
+  </data>
   <data name="settingsButtonContent" xml:space="preserve">
     <value>Settings</value>
   </data>
   <data name="settingsButtonToolTip" xml:space="preserve">
     <value>Modify settings</value>
+  </data>
+  <data name="settingsTitle" xml:space="preserve">
+    <value>Settings</value>
   </data>
   <data name="signInButtonContent" xml:space="preserve">
     <value>Sign in</value>
