@@ -29,12 +29,17 @@ namespace EmergencyX_Client
 			//otherwise there should be the text "Emergency is not installed"
 			//
 
-			EmergencyInstallation.setEmergencyInstallationPath(AppConfig.readFromAppConfig("emergencyInstallationPath"));
+			System.Windows.MessageBox.Show("Hallo Welt");//ToDo: remove
+			EmergencyInstallation myEmergencyInstallation = new EmergencyInstallation();
 
-			if(EmergencyInstallation.getIsEmergenyInstalled() == true) {
-				isEmergencyInstalled.Content = Properties.Resources.emergencyIsInstalled;
-			} else {
-				isEmergencyInstalled.Content = Properties.Resources.emergencyIsNotInstalled;
+			//System.Windows.MessageBox.Show(EmergencyInstallation.getIsEmergencyInstalled().ToString()); //ToDo: Remove
+
+			if(EmergencyInstallation.getIsEmergencyInstalled()) {
+				lblIsEmergencyInstalled.Content = Properties.Resources.emergencyIsInstalled;
+			}
+			else 
+			{
+				lblIsEmergencyInstalled.Content = Properties.Resources.emergencyIsNotInstalled;
 			}
 			
 		}

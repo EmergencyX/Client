@@ -20,9 +20,6 @@ namespace EmergencyX_Client
 				
 				var appConf = ConfigurationManager.AppSettings;
 
-				//Todo: Remove
-				System.Windows.MessageBox.Show(appConf[key]);
-
 				return (string) appConf[key];
 				
 			}

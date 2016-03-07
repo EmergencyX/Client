@@ -23,7 +23,7 @@
             <Button x:Name="settings" Content="Einstellungen" FontFamily="Calibri" Padding="5,3" UseLayoutRounding="False" MinWidth="100" FontSize="16" Margin="3,7,3,3.5" ToolTip="Einstellungen festlegen" Click="settingsClick"/>
         </Menu>
         <Grid x:Name="modOverview" Margin="100,180,260,138" Background="#FF8D8C8D" AllowDrop="True">
-			<TextBlock x:Name="textBlock" Margin="180.021,254.703,160.731,243.743" TextWrapping="Wrap" FontFamily="Calibri" FontSize="40" FontWeight="Bold" ><Label Name="isEmergencyInstalled"/></TextBlock>
+			<TextBlock x:Name="textBlock" Margin="180.021,254.703,160.731,243.743" TextWrapping="Wrap" FontFamily="Calibri" FontSize="40" FontWeight="Bold" ><Label Name="lblIsEmergencyInstalled"/></TextBlock>
         </Grid>
 
     </Grid>

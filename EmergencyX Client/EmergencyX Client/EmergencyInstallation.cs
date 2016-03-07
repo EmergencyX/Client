@@ -4,24 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Win32;
-using Microsoft.VisualBasic.Devices;
 
 namespace EmergencyX_Client
 {
-	public static class EmergencyInstallation
+	public class EmergencyInstallation
 	{
 		private static bool isEmergencyInstalled;
-		private static string emergencyInstallationPath;
+		private string emergencyInstallationPath;
 	
 		// <var isEmergencyInstalled>	
-		public static bool getIsEmergenyInstalled() 
+		public static bool getIsEmergencyInstalled() 
 		{
 			return EmergencyInstallation.isEmergencyInstalled;
 		}
 		
-		public static void setIsEmergencyInstalled()
+		public static void setIsEmergencyInstalled(string path)
 		{
-			if (EmergencyInstallation.emergencyInstallationPath != null) // if the is no installation path no emergeny is installed
+			if (!path.Length.Equals(0)) // if the is no installation path no emergeny is installed
 			{ 
 				EmergencyInstallation.isEmergencyInstalled = true;
 			}
@@ -34,18 +33,25 @@ namespace EmergencyX_Client
 
 
 		//<var emergencyInstallationPath>
-		public static string getEmergencyInstallationPath()
+		public string getEmergencyInstallationPath()
 		{
-			return EmergencyInstallation.emergencyInstallationPath;
+			return this.emergencyInstallationPath;
 		}
 
-		public static void setEmergencyInstallationPath(string installPath)
+		public void setEmergencyInstallationPath(string installPath)
 		{
-			EmergencyInstallation.emergencyInstallationPath = installPath;		
+			this.emergencyInstallationPath = installPath;		
 		}
 
 		//</var>
 		
+		//Constructor
+		public EmergencyInstallation() 
+		{
+			this.setEmergencyInstallationPath(AppConfig.readFromAppConfig("emergencyInstallationPath"));
+			EmergencyInstallation.setIsEmergencyInstalled(this.getEmergencyInstallationPath());
+
+		}
 
 	}
 }

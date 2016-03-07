@@ -51,7 +51,8 @@ namespace EmergencyX_Client
 		/// <param name="e"></param>
 		private void btnCancelSettingsClick(object sender, RoutedEventArgs e)
 		{
-			EmergencyInstallation.setEmergencyInstallationPath(AppConfig.readFromAppConfig("emergencyInstallationPath"));
+			EmergencyInstallation emergency = new EmergencyInstallation();
+			emergency.setEmergencyInstallationPath(AppConfig.readFromAppConfig("emergencyInstallationPath"));
 			Close();
 		}
 
