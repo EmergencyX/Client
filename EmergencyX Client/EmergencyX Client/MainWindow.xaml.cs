@@ -29,12 +29,10 @@ namespace EmergencyX_Client
 			//otherwise there should be the text "Emergency is not installed"
 			//
 
-			System.Windows.MessageBox.Show("Hallo Welt");//ToDo: remove
 			EmergencyInstallation myEmergencyInstallation = new EmergencyInstallation();
 
-			//System.Windows.MessageBox.Show(EmergencyInstallation.getIsEmergencyInstalled().ToString()); //ToDo: Remove
-
-			if(EmergencyInstallation.getIsEmergencyInstalled()) {
+			if(EmergencyInstallation.getIsEmergencyInstalled() && myEmergencyInstallation.verifyEmergencyInstallation(myEmergencyInstallation.getEmergencyInstallationPath())) 
+			{
 				lblIsEmergencyInstalled.Content = Properties.Resources.emergencyIsInstalled;
 			}
 			else 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Win32;
+using System.IO;
 
 namespace EmergencyX_Client
 {
@@ -11,7 +12,16 @@ namespace EmergencyX_Client
 	{
 		private static bool isEmergencyInstalled;
 		private string emergencyInstallationPath;
-	
+
+		//Constructor
+		public EmergencyInstallation()
+		{
+			this.setEmergencyInstallationPath(AppConfig.readFromAppConfig("emergencyInstallationPath"));
+			EmergencyInstallation.setIsEmergencyInstalled(this.getEmergencyInstallationPath());
+
+		}
+
+
 		// <var isEmergencyInstalled>	
 		public static bool getIsEmergencyInstalled() 
 		{
@@ -45,12 +55,22 @@ namespace EmergencyX_Client
 
 		//</var>
 		
-		//Constructor
-		public EmergencyInstallation() 
+		/// <summary>
+		/// This method verifys an may existing emergency Installation
+		/// </summary>
+		/// <param name="installPath"></param>
+		/// <returns></returns>
+		public bool verifyEmergencyInstallation(string installPath)
 		{
-			this.setEmergencyInstallationPath(AppConfig.readFromAppConfig("emergencyInstallationPath"));
-			EmergencyInstallation.setIsEmergencyInstalled(this.getEmergencyInstallationPath());
 
+			if (File.Exists(@installPath + @"\uninstall.exe"))
+			{
+				return true;
+			} 
+			else
+			{
+				return false;
+			}
 		}
 
 	}
