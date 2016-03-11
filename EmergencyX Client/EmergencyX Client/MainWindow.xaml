@@ -7,7 +7,7 @@
 	xmlns:s="clr-namespace:EmergencyX_Client.Properties"
         mc:Ignorable="d"
         Title="{x:Static s:Resources.appTitle}" Height="810" Width="1250" SizeToContent="WidthAndHeight" MinWidth="1250" MinHeight="720">
-    <Grid Cursor="Arrow" Name="EmergencyXClient" x:Uid="EmergencyXClient">
+    <Grid Cursor="Arrow" Name="EmergencyXClient" x:Uid="EmergencyXClient" Loaded="mainWindowLoaded">
         <Label x:Name="appHeadline" Content="{x:Static s:Resources.appName}" HorizontalAlignment="Left" Margin="41,31,0,0" VerticalAlignment="Top" FontSize="48" FontFamily="Calibri" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" Cursor="Arrow">
             <Label.RenderTransform>
                 <TransformGroup>
@@ -24,6 +24,7 @@
         </Menu>
         <Grid x:Name="modOverview" Margin="100,180,260,138" Background="#FF8D8C8D" AllowDrop="True">
 			<TextBlock x:Name="textBlock" Margin="180.021,254.703,160.731,243.743" TextWrapping="Wrap" FontFamily="Calibri" FontSize="40" FontWeight="Bold" ><Label Name="lblIsEmergencyInstalled"/></TextBlock>
+			<ListBox x:Name="liModListBox" ></ListBox>
         </Grid>
 
     </Grid>
