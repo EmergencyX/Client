@@ -8,7 +8,7 @@ using System.Windows;
 // Attribute gesteuert. Ändern Sie diese Attributwerte, um die Informationen zu ändern,
 // die einer Assembly zugeordnet sind.
 [assembly: AssemblyTitle("EmergencyX Client")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Emergency Explorer; Build: Enterprise NX-01")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("EmergencyX Client")]
