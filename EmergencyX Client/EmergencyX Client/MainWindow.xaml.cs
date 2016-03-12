@@ -16,14 +16,14 @@ using System.IO;
 
 namespace EmergencyX_Client
 {
-    /// <summary>
-    /// Interaktionslogik für MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
-    {
+	/// <summary>
+	/// Interaktionslogik für MainWindow.xaml
+	/// </summary>
+	public partial class MainWindow : Window
+	{
 		public MainWindow()
 		{
-			InitializeComponent();			
+			InitializeComponent();
 		}
 
 		private void settingsClick(object sender, RoutedEventArgs e)
@@ -40,16 +40,14 @@ namespace EmergencyX_Client
 			//otherwise there should be the text "Emergency is not installed"
 			//
 			EmergencyInstallation myEmergencyInstallation = new EmergencyInstallation();
+
+			///holds the full path to appdata mod 
 			string appDataModificationsJsonFile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Promotion Software GmbH\EMERGENCY 5\mods\mods_user_settings.json";
-			if(File.Exists(appDataModificationsJsonFile))
-			{ 
-				MessageBox.Show(appDataModificationsJsonFile);
-			}
 
 			if (EmergencyInstallation.getIsEmergencyInstalled() && myEmergencyInstallation.verifyEmergencyInstallation(myEmergencyInstallation.getEmergencyInstallationPath()))
 			{
 				ModTools modTools = new ModTools(appDataModificationsJsonFile);
-				liModListBox.Visibility = Visibility.Visible;
+				liModList.Visibility = Visibility.Visible;
 
 				Dictionary<int, string> modifications = modTools.getModifications();
 
@@ -57,15 +55,15 @@ namespace EmergencyX_Client
 				{
 					ListBoxItem item = new ListBoxItem();
 					item.Content = key.Value;
-					liModListBox.Items.Add(item);
+					liModList.Items.Add(item);
 				}
 
 			}
 			else
 			{
 				lblIsEmergencyInstalled.Content = Properties.Resources.emergencyIsNotInstalled;
-				liModListBox.IsEnabled = false;
-				liModListBox.Visibility = Visibility.Hidden;
+				liModList.IsEnabled = false;
+				liModList.Visibility = Visibility.Hidden;
 
 			}
 		}

@@ -23,15 +23,15 @@ namespace EmergencyX_Client
 
 
 		// <var isEmergencyInstalled>	
-		public static bool getIsEmergencyInstalled() 
+		public static bool getIsEmergencyInstalled()
 		{
 			return EmergencyInstallation.isEmergencyInstalled;
 		}
-		
+
 		public static void setIsEmergencyInstalled(string path)
 		{
 			if (!path.Length.Equals(0)) // if the is no installation path no emergeny is installed
-			{ 
+			{
 				EmergencyInstallation.isEmergencyInstalled = true;
 			}
 			else
@@ -50,11 +50,11 @@ namespace EmergencyX_Client
 
 		public void setEmergencyInstallationPath(string installPath)
 		{
-			this.emergencyInstallationPath = installPath;		
+			this.emergencyInstallationPath = installPath;
 		}
 
 		//</var>
-		
+
 		/// <summary>
 		/// This method verifys an may existing emergency Installation
 		/// </summary>
@@ -66,7 +66,7 @@ namespace EmergencyX_Client
 			if (File.Exists(@installPath + @"\uninstall.exe"))
 			{
 				return true;
-			} 
+			}
 			else
 			{
 				return false;

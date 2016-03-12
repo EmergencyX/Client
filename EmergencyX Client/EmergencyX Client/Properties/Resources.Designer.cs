@@ -97,6 +97,33 @@ namespace EmergencyX_Client.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Activ? ähnelt.
+        /// </summary>
+        public static string columnHeaderModActiv {
+            get {
+                return ResourceManager.GetString("columnHeaderModActiv", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Modification ähnelt.
+        /// </summary>
+        public static string columnHeaderModName {
+            get {
+                return ResourceManager.GetString("columnHeaderModName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Load order ähnelt.
+        /// </summary>
+        public static string columnHeaderModOrderingIndex {
+            get {
+                return ResourceManager.GetString("columnHeaderModOrderingIndex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Emergency installation path ähnelt.
         /// </summary>
         public static string emergencyInstallationPath {

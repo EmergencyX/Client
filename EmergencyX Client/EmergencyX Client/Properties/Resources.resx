@@ -129,6 +129,15 @@
   <data name="btnSave" xml:space="preserve">
     <value>Save</value>
   </data>
+  <data name="columnHeaderModActiv" xml:space="preserve">
+    <value>Activ?</value>
+  </data>
+  <data name="columnHeaderModName" xml:space="preserve">
+    <value>Modification</value>
+  </data>
+  <data name="columnHeaderModOrderingIndex" xml:space="preserve">
+    <value>Load order</value>
+  </data>
   <data name="emergencyInstallationPath" xml:space="preserve">
     <value>Emergency installation path</value>
   </data>

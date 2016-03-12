@@ -8,10 +8,10 @@ using System.Windows;
 
 namespace EmergencyX_Client
 {
-    /// <summary>
-    /// Interaktionslogik für "App.xaml"
-    /// </summary>
-    public partial class App : Application
-    {
-    }
+	/// <summary>
+	/// Interaktionslogik für "App.xaml"
+	/// </summary>
+	public partial class App : Application
+	{
+	}
 }

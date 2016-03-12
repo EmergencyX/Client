@@ -35,7 +35,7 @@ namespace EmergencyX_Client
 		{
 			//if settings are saved save the settings to our app.config
 			//
-			
+
 			// Storeing the Emergency Installation Path
 			// AppConfig.cs
 			bool emergencyInstallationPathSaved = AppConfig.writeToAppConfig("emergencyInstallationPath", tbxEmergencyPath.Text);

@@ -13,15 +13,15 @@ namespace EmergencyX_Client
 	public class AppConfig
 	{
 
-		public static string readFromAppConfig(string key) 
+		public static string readFromAppConfig(string key)
 		{
 			try
 			{
-				
+
 				var appConf = ConfigurationManager.AppSettings;
 
-				return (string) appConf[key];
-				
+				return (string)appConf[key];
+
 			}
 			catch (ConfigurationErrorsException)
 			{
@@ -29,7 +29,7 @@ namespace EmergencyX_Client
 				return null;
 			}
 		}
-		
+
 		public static bool writeToAppConfig(string key, string value)
 		{
 			try
@@ -49,7 +49,7 @@ namespace EmergencyX_Client
 				}
 
 				//Important, saveing
-				appConf.Save(ConfigurationSaveMode.Modified,true);
+				appConf.Save(ConfigurationSaveMode.Modified, true);
 				ConfigurationManager.RefreshSection(appConf.AppSettings.SectionInformation.Name);
 
 				//return true if all ok
