@@ -24,21 +24,19 @@
 		</Menu>
 		<Grid x:Name="modOverview" Margin="100,180,260,138" Background="#FF8D8C8D" AllowDrop="True">
 			<TextBlock x:Name="textBlock" Margin="180.021,254.703,160.731,243.743" TextWrapping="Wrap" FontFamily="Calibri" FontSize="40" FontWeight="Bold" ><Label Name="lblIsEmergencyInstalled"/></TextBlock>
-			<ListView x:Name="liModList" SelectionMode="Single">
-				<ListView.View>
-					<GridView>
-						<GridView.ColumnHeaderContainerStyle>
-							<Style BasedOn="{StaticResource {x:Type GridViewColumnHeader}}" TargetType="{x:Type GridViewColumnHeader}" >
-								<Setter Property="IsHitTestVisible" Value="False" />
-							</Style>
-						</GridView.ColumnHeaderContainerStyle>
-						<GridViewColumn />
-						<GridViewColumn />
-						<GridViewColumn />
-					</GridView>
-				</ListView.View>
-			</ListView>
+			<ListBox ItemsSource="{Binding InstalledMods}" SelectionChanged="ListBox_SelectionChanged" >
+				<ListBox.ItemTemplate>
+					<DataTemplate>
+						<StackPanel>
+							<TextBlock Text="{Binding modificationName}" />
+							<TextBlock Text="{Binding modificationActivationStatus}" />
+							<TextBlock Text="{Binding modificationOrderingIndex}" />
+						</StackPanel>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
 		</Grid>
-
+		<TextBlock x:Name="Version" HorizontalAlignment="Right" Margin="0,0,9,10" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Bottom" IsHitTestVisible="False" FontFamily="Calibri" FontSize="16" FlowDirection="RightToLeft"/>
+		
 	</Grid>
 </Window>
