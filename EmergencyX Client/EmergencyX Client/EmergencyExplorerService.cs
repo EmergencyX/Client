@@ -24,16 +24,21 @@ public static partial class EmergencyExplorerServiceReflection
 	{
 		byte[] descriptorData = global::System.Convert.FromBase64String(
 		    string.Concat(
-		      "Ch5FbWVyZ2VuY3lFeHBsb3JlclNlcnZpY2UucHJvdG8iMgoMTG9naW5SZXF1",
-		      "ZXN0EhAKCHVzZXJuYW1lGAEgASgJEhAKCHBhc3N3b3JkGAIgASgJIjEKDUxv",
-		      "Z2luUmVzcG9uc2USDwoHc3VjY2VzcxgBIAEoCBIPCgd1c2VyX2lkGAIgASgN",
-		      "MkIKGEVtZXJnZW5jeUV4cGxvcmVyU2VydmljZRImCgVMb2dpbhINLkxvZ2lu",
-		      "UmVxdWVzdBoOLkxvZ2luUmVzcG9uc2ViBnByb3RvMw=="));
+		      "Ch5FbWVyZ2VuY3lFeHBsb3JlclNlcnZpY2UucHJvdG8iRwoMTG9naW5SZXF1",
+		      "ZXN0EhAKCHVzZXJuYW1lGAEgASgJEhAKCHBhc3N3b3JkGAIgASgJEhMKC3Jl",
+		      "bWVtYmVyX21lGAMgASgIIjcKFUxvZ2luV2l0aFRva2VuUmVxdWVzdBIPCgd1",
+		      "c2VyX2lkGAEgASgNEg0KBXRva2VuGAIgASgJIkAKDUxvZ2luUmVzcG9uc2US",
+		      "DwoHc3VjY2VzcxgBIAEoCBIPCgd1c2VyX2lkGAIgASgNEg0KBXRva2VuGAMg",
+		      "ASgJMnwKGEVtZXJnZW5jeUV4cGxvcmVyU2VydmljZRImCgVMb2dpbhINLkxv",
+		      "Z2luUmVxdWVzdBoOLkxvZ2luUmVzcG9uc2USOAoOTG9naW5XaXRoVG9rZW4S",
+		      "Fi5Mb2dpbldpdGhUb2tlblJlcXVlc3QaDi5Mb2dpblJlc3BvbnNlYgZwcm90",
+		      "bzM="));
 		descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
 		    new pbr::FileDescriptor[] { },
 		    new pbr::GeneratedCodeInfo(null, new pbr::GeneratedCodeInfo[] {
-	  new pbr::GeneratedCodeInfo(typeof(global::LoginRequest), global::LoginRequest.Parser, new[]{ "Username", "Password" }, null, null, null),
-	  new pbr::GeneratedCodeInfo(typeof(global::LoginResponse), global::LoginResponse.Parser, new[]{ "Success", "UserId" }, null, null, null)
+	  new pbr::GeneratedCodeInfo(typeof(global::LoginRequest), global::LoginRequest.Parser, new[]{ "Username", "Password", "RememberMe" }, null, null, null),
+	  new pbr::GeneratedCodeInfo(typeof(global::LoginWithTokenRequest), global::LoginWithTokenRequest.Parser, new[]{ "UserId", "Token" }, null, null, null),
+	  new pbr::GeneratedCodeInfo(typeof(global::LoginResponse), global::LoginResponse.Parser, new[]{ "Success", "UserId", "Token" }, null, null, null)
 		    }));
 	}
 	#endregion
@@ -67,6 +72,7 @@ public sealed partial class LoginRequest : pb::IMessage<LoginRequest>
 	{
 		username_ = other.username_;
 		password_ = other.password_;
+		rememberMe_ = other.rememberMe_;
 	}
 
 	public LoginRequest Clone()
@@ -98,6 +104,18 @@ public sealed partial class LoginRequest : pb::IMessage<LoginRequest>
 		}
 	}
 
+	/// <summary>Field number for the "remember_me" field.</summary>
+	public const int RememberMeFieldNumber = 3;
+	private bool rememberMe_;
+	public bool RememberMe
+	{
+		get { return rememberMe_; }
+		set
+		{
+			rememberMe_ = value;
+		}
+	}
+
 	public override bool Equals(object other)
 	{
 		return Equals(other as LoginRequest);
@@ -115,6 +133,7 @@ public sealed partial class LoginRequest : pb::IMessage<LoginRequest>
 		}
 		if (Username != other.Username) return false;
 		if (Password != other.Password) return false;
+		if (RememberMe != other.RememberMe) return false;
 		return true;
 	}
 
@@ -123,6 +142,7 @@ public sealed partial class LoginRequest : pb::IMessage<LoginRequest>
 		int hash = 1;
 		if (Username.Length != 0) hash ^= Username.GetHashCode();
 		if (Password.Length != 0) hash ^= Password.GetHashCode();
+		if (RememberMe != false) hash ^= RememberMe.GetHashCode();
 		return hash;
 	}
 
@@ -143,6 +163,11 @@ public sealed partial class LoginRequest : pb::IMessage<LoginRequest>
 			output.WriteRawTag(18);
 			output.WriteString(Password);
 		}
+		if (RememberMe != false)
+		{
+			output.WriteRawTag(24);
+			output.WriteBool(RememberMe);
+		}
 	}
 
 	public int CalculateSize()
@@ -155,6 +180,10 @@ public sealed partial class LoginRequest : pb::IMessage<LoginRequest>
 		if (Password.Length != 0)
 		{
 			size += 1 + pb::CodedOutputStream.ComputeStringSize(Password);
+		}
+		if (RememberMe != false)
+		{
+			size += 1 + 1;
 		}
 		return size;
 	}
@@ -172,6 +201,10 @@ public sealed partial class LoginRequest : pb::IMessage<LoginRequest>
 		if (other.Password.Length != 0)
 		{
 			Password = other.Password;
+		}
+		if (other.RememberMe != false)
+		{
+			RememberMe = other.RememberMe;
 		}
 	}
 
@@ -195,6 +228,172 @@ public sealed partial class LoginRequest : pb::IMessage<LoginRequest>
 						Password = input.ReadString();
 						break;
 					}
+				case 24:
+					{
+						RememberMe = input.ReadBool();
+						break;
+					}
+			}
+		}
+	}
+
+}
+
+[global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+public sealed partial class LoginWithTokenRequest : pb::IMessage<LoginWithTokenRequest>
+{
+	private static readonly pb::MessageParser<LoginWithTokenRequest> _parser = new pb::MessageParser<LoginWithTokenRequest>(() => new LoginWithTokenRequest());
+	public static pb::MessageParser<LoginWithTokenRequest> Parser { get { return _parser; } }
+
+	public static pbr::MessageDescriptor Descriptor
+	{
+		get { return global::EmergencyExplorerServiceReflection.Descriptor.MessageTypes[1]; }
+	}
+
+	pbr::MessageDescriptor pb::IMessage.Descriptor
+	{
+		get { return Descriptor; }
+	}
+
+	public LoginWithTokenRequest()
+	{
+		OnConstruction();
+	}
+
+	partial void OnConstruction();
+
+	public LoginWithTokenRequest(LoginWithTokenRequest other) : this()
+	{
+		userId_ = other.userId_;
+		token_ = other.token_;
+	}
+
+	public LoginWithTokenRequest Clone()
+	{
+		return new LoginWithTokenRequest(this);
+	}
+
+	/// <summary>Field number for the "user_id" field.</summary>
+	public const int UserIdFieldNumber = 1;
+	private uint userId_;
+	public uint UserId
+	{
+		get { return userId_; }
+		set
+		{
+			userId_ = value;
+		}
+	}
+
+	/// <summary>Field number for the "token" field.</summary>
+	public const int TokenFieldNumber = 2;
+	private string token_ = "";
+	public string Token
+	{
+		get { return token_; }
+		set
+		{
+			token_ = pb::Preconditions.CheckNotNull(value, "value");
+		}
+	}
+
+	public override bool Equals(object other)
+	{
+		return Equals(other as LoginWithTokenRequest);
+	}
+
+	public bool Equals(LoginWithTokenRequest other)
+	{
+		if (ReferenceEquals(other, null))
+		{
+			return false;
+		}
+		if (ReferenceEquals(other, this))
+		{
+			return true;
+		}
+		if (UserId != other.UserId) return false;
+		if (Token != other.Token) return false;
+		return true;
+	}
+
+	public override int GetHashCode()
+	{
+		int hash = 1;
+		if (UserId != 0) hash ^= UserId.GetHashCode();
+		if (Token.Length != 0) hash ^= Token.GetHashCode();
+		return hash;
+	}
+
+	public override string ToString()
+	{
+		return pb::JsonFormatter.ToDiagnosticString(this);
+	}
+
+	public void WriteTo(pb::CodedOutputStream output)
+	{
+		if (UserId != 0)
+		{
+			output.WriteRawTag(8);
+			output.WriteUInt32(UserId);
+		}
+		if (Token.Length != 0)
+		{
+			output.WriteRawTag(18);
+			output.WriteString(Token);
+		}
+	}
+
+	public int CalculateSize()
+	{
+		int size = 0;
+		if (UserId != 0)
+		{
+			size += 1 + pb::CodedOutputStream.ComputeUInt32Size(UserId);
+		}
+		if (Token.Length != 0)
+		{
+			size += 1 + pb::CodedOutputStream.ComputeStringSize(Token);
+		}
+		return size;
+	}
+
+	public void MergeFrom(LoginWithTokenRequest other)
+	{
+		if (other == null)
+		{
+			return;
+		}
+		if (other.UserId != 0)
+		{
+			UserId = other.UserId;
+		}
+		if (other.Token.Length != 0)
+		{
+			Token = other.Token;
+		}
+	}
+
+	public void MergeFrom(pb::CodedInputStream input)
+	{
+		uint tag;
+		while ((tag = input.ReadTag()) != 0)
+		{
+			switch (tag)
+			{
+				default:
+					input.SkipLastField();
+					break;
+				case 8:
+					{
+						UserId = input.ReadUInt32();
+						break;
+					}
+				case 18:
+					{
+						Token = input.ReadString();
+						break;
+					}
 			}
 		}
 	}
@@ -209,7 +408,7 @@ public sealed partial class LoginResponse : pb::IMessage<LoginResponse>
 
 	public static pbr::MessageDescriptor Descriptor
 	{
-		get { return global::EmergencyExplorerServiceReflection.Descriptor.MessageTypes[1]; }
+		get { return global::EmergencyExplorerServiceReflection.Descriptor.MessageTypes[2]; }
 	}
 
 	pbr::MessageDescriptor pb::IMessage.Descriptor
@@ -228,6 +427,7 @@ public sealed partial class LoginResponse : pb::IMessage<LoginResponse>
 	{
 		success_ = other.success_;
 		userId_ = other.userId_;
+		token_ = other.token_;
 	}
 
 	public LoginResponse Clone()
@@ -259,6 +459,18 @@ public sealed partial class LoginResponse : pb::IMessage<LoginResponse>
 		}
 	}
 
+	/// <summary>Field number for the "token" field.</summary>
+	public const int TokenFieldNumber = 3;
+	private string token_ = "";
+	public string Token
+	{
+		get { return token_; }
+		set
+		{
+			token_ = pb::Preconditions.CheckNotNull(value, "value");
+		}
+	}
+
 	public override bool Equals(object other)
 	{
 		return Equals(other as LoginResponse);
@@ -276,6 +488,7 @@ public sealed partial class LoginResponse : pb::IMessage<LoginResponse>
 		}
 		if (Success != other.Success) return false;
 		if (UserId != other.UserId) return false;
+		if (Token != other.Token) return false;
 		return true;
 	}
 
@@ -284,6 +497,7 @@ public sealed partial class LoginResponse : pb::IMessage<LoginResponse>
 		int hash = 1;
 		if (Success != false) hash ^= Success.GetHashCode();
 		if (UserId != 0) hash ^= UserId.GetHashCode();
+		if (Token.Length != 0) hash ^= Token.GetHashCode();
 		return hash;
 	}
 
@@ -304,6 +518,11 @@ public sealed partial class LoginResponse : pb::IMessage<LoginResponse>
 			output.WriteRawTag(16);
 			output.WriteUInt32(UserId);
 		}
+		if (Token.Length != 0)
+		{
+			output.WriteRawTag(26);
+			output.WriteString(Token);
+		}
 	}
 
 	public int CalculateSize()
@@ -316,6 +535,10 @@ public sealed partial class LoginResponse : pb::IMessage<LoginResponse>
 		if (UserId != 0)
 		{
 			size += 1 + pb::CodedOutputStream.ComputeUInt32Size(UserId);
+		}
+		if (Token.Length != 0)
+		{
+			size += 1 + pb::CodedOutputStream.ComputeStringSize(Token);
 		}
 		return size;
 	}
@@ -333,6 +556,10 @@ public sealed partial class LoginResponse : pb::IMessage<LoginResponse>
 		if (other.UserId != 0)
 		{
 			UserId = other.UserId;
+		}
+		if (other.Token.Length != 0)
+		{
+			Token = other.Token;
 		}
 	}
 
@@ -354,6 +581,11 @@ public sealed partial class LoginResponse : pb::IMessage<LoginResponse>
 				case 16:
 					{
 						UserId = input.ReadUInt32();
+						break;
+					}
+				case 26:
+					{
+						Token = input.ReadString();
 						break;
 					}
 			}

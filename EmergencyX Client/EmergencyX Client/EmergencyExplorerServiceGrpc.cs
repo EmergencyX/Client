@@ -15,12 +15,20 @@ namespace EmergencyExplorerService
 
 		static readonly Marshaller<global::LoginRequest> __Marshaller_LoginRequest = Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::LoginRequest.Parser.ParseFrom);
 		static readonly Marshaller<global::LoginResponse> __Marshaller_LoginResponse = Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::LoginResponse.Parser.ParseFrom);
+		static readonly Marshaller<global::LoginWithTokenRequest> __Marshaller_LoginWithTokenRequest = Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::LoginWithTokenRequest.Parser.ParseFrom);
 
 		static readonly Method<global::LoginRequest, global::LoginResponse> __Method_Login = new Method<global::LoginRequest, global::LoginResponse>(
 		    MethodType.Unary,
 		    __ServiceName,
 		    "Login",
 		    __Marshaller_LoginRequest,
+		    __Marshaller_LoginResponse);
+
+		static readonly Method<global::LoginWithTokenRequest, global::LoginResponse> __Method_LoginWithToken = new Method<global::LoginWithTokenRequest, global::LoginResponse>(
+		    MethodType.Unary,
+		    __ServiceName,
+		    "LoginWithToken",
+		    __Marshaller_LoginWithTokenRequest,
 		    __Marshaller_LoginResponse);
 
 		// service descriptor
@@ -36,12 +44,17 @@ namespace EmergencyExplorerService
 			global::LoginResponse Login(global::LoginRequest request, CallOptions options);
 			AsyncUnaryCall<global::LoginResponse> LoginAsync(global::LoginRequest request, Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken));
 			AsyncUnaryCall<global::LoginResponse> LoginAsync(global::LoginRequest request, CallOptions options);
+			global::LoginResponse LoginWithToken(global::LoginWithTokenRequest request, Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken));
+			global::LoginResponse LoginWithToken(global::LoginWithTokenRequest request, CallOptions options);
+			AsyncUnaryCall<global::LoginResponse> LoginWithTokenAsync(global::LoginWithTokenRequest request, Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken));
+			AsyncUnaryCall<global::LoginResponse> LoginWithTokenAsync(global::LoginWithTokenRequest request, CallOptions options);
 		}
 
 		// server-side interface
 		public interface IEmergencyExplorerService
 		{
 			Task<global::LoginResponse> Login(global::LoginRequest request, ServerCallContext context);
+			Task<global::LoginResponse> LoginWithToken(global::LoginWithTokenRequest request, ServerCallContext context);
 		}
 
 		// client stub
@@ -70,13 +83,34 @@ namespace EmergencyExplorerService
 				var call = CreateCall(__Method_Login, options);
 				return Calls.AsyncUnaryCall(call, request);
 			}
+			public global::LoginResponse LoginWithToken(global::LoginWithTokenRequest request, Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+			{
+				var call = CreateCall(__Method_LoginWithToken, new CallOptions(headers, deadline, cancellationToken));
+				return Calls.BlockingUnaryCall(call, request);
+			}
+			public global::LoginResponse LoginWithToken(global::LoginWithTokenRequest request, CallOptions options)
+			{
+				var call = CreateCall(__Method_LoginWithToken, options);
+				return Calls.BlockingUnaryCall(call, request);
+			}
+			public AsyncUnaryCall<global::LoginResponse> LoginWithTokenAsync(global::LoginWithTokenRequest request, Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+			{
+				var call = CreateCall(__Method_LoginWithToken, new CallOptions(headers, deadline, cancellationToken));
+				return Calls.AsyncUnaryCall(call, request);
+			}
+			public AsyncUnaryCall<global::LoginResponse> LoginWithTokenAsync(global::LoginWithTokenRequest request, CallOptions options)
+			{
+				var call = CreateCall(__Method_LoginWithToken, options);
+				return Calls.AsyncUnaryCall(call, request);
+			}
 		}
 
 		// creates service definition that can be registered with a server
 		public static ServerServiceDefinition BindService(IEmergencyExplorerService serviceImpl)
 		{
 			return ServerServiceDefinition.CreateBuilder(__ServiceName)
-			    .AddMethod(__Method_Login, serviceImpl.Login).Build();
+			    .AddMethod(__Method_Login, serviceImpl.Login)
+			    .AddMethod(__Method_LoginWithToken, serviceImpl.LoginWithToken).Build();
 		}
 
 		// creates a new client
