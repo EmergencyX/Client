@@ -74,6 +74,9 @@ namespace EmergencyX_Client
 
 			bool settingUseZipOrBrotli = AppConfig.writeToAppConfig("compressionAlgorithm", compressionToConfig);
 
+
+			// After clean up close the window
+			//
 			Settings.GetWindow(SettingsWindow).Close();
 		}
 
