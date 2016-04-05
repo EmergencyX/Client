@@ -162,6 +162,9 @@
   <data name="settingsTitle" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="settingZipOrBrotilDescription" xml:space="preserve">
+    <value>Which compression algorithm should be used?</value>
+  </data>
   <data name="signInButtonContent" xml:space="preserve">
     <value>Sign in</value>
   </data>
@@ -173,5 +176,11 @@
   </data>
   <data name="signOutButtonToolTip" xml:space="preserve">
     <value>Perform logout</value>
+  </data>
+  <data name="settingUseBrotli" xml:space="preserve">
+    <value>Brotil (advanced)</value>
+  </data>
+  <data name="settingUseZip" xml:space="preserve">
+    <value>Zip (default)</value>
   </data>
 </root>

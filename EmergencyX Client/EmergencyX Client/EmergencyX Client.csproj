@@ -253,6 +253,10 @@
       <Project>{20c8ed49-91fb-4247-9573-77227ad72b6d}</Project>
       <Name>EmergencyX.Emergency5.Modifications</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EmergencyX.ZipService\EmergencyX.ZipService.csproj">
+      <Project>{2c0dceb1-08fa-4a73-9cd3-07c4cc5e2424}</Project>
+      <Name>EmergencyX.ZipService</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\grpc.native.csharp.0.13.0\build\portable-net45+netcore45+wpa81+wp8\grpc.native.csharp.targets" Condition="Exists('..\packages\grpc.native.csharp.0.13.0\build\portable-net45+netcore45+wpa81+wp8\grpc.native.csharp.targets')" />

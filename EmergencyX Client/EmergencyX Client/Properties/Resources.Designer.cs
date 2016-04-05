@@ -196,6 +196,33 @@ namespace EmergencyX_Client.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Brotil (advanced) ähnelt.
+        /// </summary>
+        public static string settingUseBrotli {
+            get {
+                return ResourceManager.GetString("settingUseBrotli", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Zip (default) ähnelt.
+        /// </summary>
+        public static string settingUseZip {
+            get {
+                return ResourceManager.GetString("settingUseZip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Which compression algorithm should be used? ähnelt.
+        /// </summary>
+        public static string settingZipOrBrotilDescription {
+            get {
+                return ResourceManager.GetString("settingZipOrBrotilDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Sign in ähnelt.
         /// </summary>
         public static string signInButtonContent {

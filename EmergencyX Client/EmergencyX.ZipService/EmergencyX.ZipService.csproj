@@ -46,10 +46,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EmergencyX Client\EmergencyX Client.csproj">
-      <Project>{1d8f4902-74c1-4212-829f-e91fd3d7c248}</Project>
-      <Name>EmergencyX Client</Name>
-    </ProjectReference>
     <ProjectReference Include="..\EmergencyX.Emergency5.Modifications\EmergencyX.Emergency5.Modifications.csproj">
       <Project>{20c8ed49-91fb-4247-9573-77227ad72b6d}</Project>
       <Name>EmergencyX.Emergency5.Modifications</Name>

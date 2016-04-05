@@ -24,6 +24,24 @@ namespace EmergencyX_Client
 		{
 			InitializeComponent();
 			tbxEmergencyPath.Text = AppConfig.readFromAppConfig("emergencyInstallationPath");
+
+			#region ZipOrBrotliMode
+			switch (AppConfig.readFromAppConfig("compressionAlgorithm"))
+			{
+				case "zip":
+					rbZip.IsChecked = true;
+					rbBrotli.IsChecked = false;
+					break;
+				case "brotli":
+					rbBrotli.IsChecked = true;
+					rbZip.IsChecked = false;
+					break;
+				default:
+					rbZip.IsChecked = true;
+					rbBrotli.IsChecked = false;
+					break;
+			}
+			#endregion
 		}
 
 		/// <summary>
@@ -37,9 +55,24 @@ namespace EmergencyX_Client
 			//
 
 			// Storeing the Emergency Installation Path
-			// AppConfig.cs
+			// 
 			bool emergencyInstallationPathSaved = AppConfig.writeToAppConfig("emergencyInstallationPath", tbxEmergencyPath.Text);
 
+			// Storing the Compression Mode, zip or brotli
+			//
+			string compressionToConfig;
+			#region ZipOrBrotliMode
+			if(rbBrotli.IsChecked == true)
+			{
+				compressionToConfig = "brotli";
+			}
+			else
+			{
+				compressionToConfig = "zip";
+			}
+			#endregion
+
+			bool settingUseZipOrBrotli = AppConfig.writeToAppConfig("compressionAlgorithm", compressionToConfig);
 
 			Settings.GetWindow(SettingsWindow).Close();
 		}
@@ -56,8 +89,5 @@ namespace EmergencyX_Client
 			Close();
 		}
 
-		private void SettingsLoaded(object sender, RoutedEventArgs e)
-		{
-		}
 	}
 }
