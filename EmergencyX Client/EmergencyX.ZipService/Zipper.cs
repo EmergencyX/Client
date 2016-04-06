@@ -3,21 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.IO.Compression;
 using System.IO;
+using System.IO.Compression;
 
 namespace EmergencyX.ZipService
 {
 	/// <summary>
-	/// Contains all the things related with unpacking a file
+	///  Contains all the files related with packing a file
 	/// </summary>
-	public class Unzipper
+	public class Zipper
 	{
-
 		private string zipFileName;
+		private string savePath;
 
 		#region getterAndSetter
-
 		public string getZipFileName()
 		{
 			return this.zipFileName;
@@ -28,35 +27,33 @@ namespace EmergencyX.ZipService
 			this.zipFileName = zipFileName;
 		}
 
+		public string getSavePath()
+		{
+			return this.savePath;
+		}
+	
+		public void setSavePath(string savePath)
+		{
+			this.savePath = savePath;
+		}
+
 		#endregion getterAndSetter
 
 		/// <summary>
-		/// Upacks a ModZip
+		/// Adds files into a ZipArchiv
 		/// </summary>
-		/// <param name="targetPath"></param>
-		public void unpackModZip(string targetPath)
+		public void packModZip()
 		{
-			
-			try { 
-				ZipArchive myArchiv = ZipFile.Open(getZipFileName(), ZipArchiveMode.Read);
-				myArchiv.ExtractToDirectory(targetPath);
-				myArchiv.Dispose();
-			} 
+			try 
+			{
+				// The user should have all files for a mod in on direcotry
+				//
+				ZipFile.CreateFromDirectory(getZipFileName(),getSavePath());
+			}
 			catch (Exception e)
 			{
 				//Error Handling
-			}
-
-			try
-			{
-				File.Delete(this.getZipFileName());
-			}
-			catch (Exception ex)
-			{
-				//Error Handling
-			}
-
-		}
-	
+			}			
+		}	
 	}
 }
