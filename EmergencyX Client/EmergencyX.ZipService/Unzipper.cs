@@ -36,25 +36,15 @@ namespace EmergencyX.ZipService
 		/// <param name="targetPath"></param>
 		public void unpackModZip(string targetPath)
 		{
+			//First unpack
+			//
+			ZipArchive myArchiv = ZipFile.Open(getZipFileName(), ZipArchiveMode.Read);
+			myArchiv.ExtractToDirectory(targetPath);
+			myArchiv.Dispose();
 			
-			try { 
-				ZipArchive myArchiv = ZipFile.Open(getZipFileName(), ZipArchiveMode.Read);
-				myArchiv.ExtractToDirectory(targetPath);
-				myArchiv.Dispose();
-			} 
-			catch (Exception e)
-			{
-				//Error Handling
-			}
-
-			try
-			{
-				File.Delete(this.getZipFileName());
-			}
-			catch (Exception ex)
-			{
-				//Error Handling
-			}
+			//Then clean up (-> delete the file)
+			//
+			File.Delete(this.getZipFileName());
 
 		}
 	

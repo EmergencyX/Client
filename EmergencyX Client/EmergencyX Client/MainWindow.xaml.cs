@@ -86,5 +86,25 @@ namespace EmergencyX_Client
 		{
 			updateSpecificWindowData();
 		}
+
+		private void ModListContainerMouseDown(object sender, MouseButtonEventArgs e)
+		{
+			if(e.LeftButton == MouseButtonState.Pressed)
+				ModListContainer.UnselectAll();
+		}
+
+		#region ModListContextMenu
+		
+		private void OnOpend(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void OnClosed(object sender,RoutedEventArgs e) 
+		{
+
+		}
+
+		#endregion ModListContextMenu
 	}
 }

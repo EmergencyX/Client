@@ -44,16 +44,9 @@ namespace EmergencyX.ZipService
 		/// </summary>
 		public void packModZip()
 		{
-			try 
-			{
-				// The user should have all files for a mod in on direcotry
-				//
-				ZipFile.CreateFromDirectory(getZipFileName(),getSavePath());
-			}
-			catch (Exception e)
-			{
-				//Error Handling
-			}			
+			// The user should have all files for a mod in on direcotry
+			//
+			ZipFile.CreateFromDirectory(getZipFileName(),getSavePath());		
 		}	
 	}
 }
