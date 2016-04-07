@@ -31,7 +31,7 @@ namespace EmergencyX.ZipService
 		{
 			return this.savePath;
 		}
-	
+
 		public void setSavePath(string savePath)
 		{
 			this.savePath = savePath;
@@ -46,7 +46,7 @@ namespace EmergencyX.ZipService
 		{
 			// The user should have all files for a mod in on direcotry
 			//
-			ZipFile.CreateFromDirectory(getZipFileName(),getSavePath());		
-		}	
+			ZipFile.CreateFromDirectory(getZipFileName(), getSavePath());
+		}
 	}
 }

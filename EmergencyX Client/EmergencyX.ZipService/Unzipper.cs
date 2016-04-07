@@ -41,12 +41,12 @@ namespace EmergencyX.ZipService
 			ZipArchive myArchiv = ZipFile.Open(getZipFileName(), ZipArchiveMode.Read);
 			myArchiv.ExtractToDirectory(targetPath);
 			myArchiv.Dispose();
-			
+
 			//Then clean up (-> delete the file)
 			//
 			File.Delete(this.getZipFileName());
 
 		}
-	
+
 	}
 }

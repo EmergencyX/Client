@@ -22,9 +22,9 @@ namespace EmergencyX_Client
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		
+
 		public List<InstalledMod> InstalledMods { get; set; }
-		
+
 		public MainWindow()
 		{
 			InitializeComponent();
@@ -89,18 +89,18 @@ namespace EmergencyX_Client
 
 		private void ModListContainerMouseDown(object sender, MouseButtonEventArgs e)
 		{
-			if(e.LeftButton == MouseButtonState.Pressed)
+			if (e.LeftButton == MouseButtonState.Pressed)
 				ModListContainer.UnselectAll();
 		}
 
 		#region ModListContextMenu
-		
+
 		private void OnOpend(object sender, RoutedEventArgs e)
 		{
 
 		}
 
-		private void OnClosed(object sender,RoutedEventArgs e) 
+		private void OnClosed(object sender, RoutedEventArgs e)
 		{
 
 		}

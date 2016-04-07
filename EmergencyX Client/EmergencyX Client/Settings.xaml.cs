@@ -62,7 +62,7 @@ namespace EmergencyX_Client
 			//
 			string compressionToConfig;
 			#region ZipOrBrotliMode
-			if(rbBrotli.IsChecked == true)
+			if (rbBrotli.IsChecked == true)
 			{
 				compressionToConfig = "brotli";
 			}

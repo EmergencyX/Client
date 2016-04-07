@@ -33,7 +33,7 @@ namespace EmergencyX.Emergency5.Modifications
 				helper = mod.Key;
 
 				Dictionary<string, object> modOptions = JsonConvert.DeserializeObject<Dictionary<string, object>>(mod.Value.ToString());
-					
+
 				//counter
 				int i = 1;
 				foreach (var key in modOptions)
@@ -41,12 +41,12 @@ namespace EmergencyX.Emergency5.Modifications
 					//if i is one the loop has too work whit the modification activation key
 					//if if i is two the loop has too handel the ordering index key
 					//if its running more then three times there is a problem with the json file
-					if (i == 1) 
-					{ 
+					if (i == 1)
+					{
 						helperTwo = key.Value.ToString();
 					}
-					else if(i == 2)
-					{ 
+					else if (i == 2)
+					{
 						helperThree = key.Value.ToString();
 					}
 					else {
@@ -78,20 +78,20 @@ namespace EmergencyX.Emergency5.Modifications
 		// static Methodes down there...
 		//
 
-		public static bool modifyModActivityState(bool status,string mod,List<InstalledMod> installed)
+		public static bool modifyModActivityState(bool status, string mod, List<InstalledMod> installed)
 		{
 			//WIP!!
 			List<int> i = new List<int>();
-			 i.Add(installed.FindIndex(delegate (InstalledMod Mods)
-						{
-							if (Mods.modificationName == mod)
-								return true;
-							else
-								return false;
-						})
-			);
+			i.Add(installed.FindIndex(delegate (InstalledMod Mods)
+					       {
+						       if (Mods.modificationName == mod)
+							       return true;
+						       else
+							       return false;
+					       })
+		       );
 
-			
+
 			foreach (int index in i)
 			{
 				installed[index].modificationActivationStatus = status.ToString();
@@ -102,6 +102,6 @@ namespace EmergencyX.Emergency5.Modifications
 			return true;
 		}
 
-		
+
 	}
 }
