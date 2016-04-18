@@ -183,4 +183,13 @@
   <data name="settingUseZip" xml:space="preserve">
     <value>Zip (default)</value>
   </data>
+  <data name="clientRestartNeeded" xml:space="preserve">
+    <value>Emergency X has to be restarted because the Emergency installation path has cahanged.</value>
+  </data>
+  <data name="clientRestartNeededTitle" xml:space="preserve">
+    <value>Application restart</value>
+  </data>
+  <data name="changesSuccessfullSaved" xml:space="preserve">
+    <value>Changes successfully saved.</value>
+  </data>
 </root>

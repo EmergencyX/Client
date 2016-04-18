@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,10 +21,19 @@ namespace EmergencyX_Client
 	/// </summary>
 	public partial class Settings : Window
 	{
+
+		private string oldEmergencyPath { get; set; }
+
 		public Settings()
 		{
 			InitializeComponent();
 			tbxEmergencyPath.Text = AppConfig.readFromAppConfig("emergencyInstallationPath");
+			this.oldEmergencyPath = tbxEmergencyPath.Text;
+			
+			#if DEBUG
+				tbxEmergencyPath.Text = @"D:\Program Files (x86)\Emergency 5";
+				this.oldEmergencyPath = @"D:\Program Files (x86)\Emergency 5";
+			#endif
 
 			#region ZipOrBrotliMode
 			switch (AppConfig.readFromAppConfig("compressionAlgorithm"))
@@ -75,9 +85,23 @@ namespace EmergencyX_Client
 			bool settingUseZipOrBrotli = AppConfig.writeToAppConfig("compressionAlgorithm", compressionToConfig);
 
 
-			// After clean up close the window
+			// if the Installation path of emergency has changed our Emergency X has to be restarted (for reasons...)
 			//
-			Settings.GetWindow(SettingsWindow).Close();
+
+			if (oldEmergencyPath != tbxEmergencyPath.Text)
+			{
+				// Inform the user and restart the Application
+				//
+				MessageBox.Show(Properties.Resources.clientRestartNeeded, Properties.Resources.clientRestartNeededTitle, MessageBoxButton.OK, MessageBoxImage.Asterisk);
+				System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
+				Application.Current.Shutdown();
+			}
+			else
+			{
+				// After clean up close the window
+				//
+				Settings.GetWindow(SettingsWindow).Close();
+			}
 		}
 
 		/// <summary>
@@ -91,6 +115,5 @@ namespace EmergencyX_Client
 			emergency.setEmergencyInstallationPath(AppConfig.readFromAppConfig("emergencyInstallationPath"));
 			Close();
 		}
-
 	}
 }

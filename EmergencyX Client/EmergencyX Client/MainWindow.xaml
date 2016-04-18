@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EmergencyX_Client"
 	xmlns:s="clr-namespace:EmergencyX_Client.Properties"
+	xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d"
-        Title="{x:Static s:Resources.appTitle}" Height="810" Width="1250" SizeToContent="WidthAndHeight" MinWidth="1250" MinHeight="720">
+        Title="{x:Static s:Resources.appTitle}" Height="810" Width="1250" SizeToContent="WidthAndHeight" MinWidth="1250" MinHeight="720" IsVisibleChanged="MainWindowIsVisibleChanged" >
 	<Grid Cursor="Arrow" Name="EmergencyXClient" x:Uid="EmergencyXClient" Loaded="mainWindowLoaded">
 		<Label x:Name="appHeadline" Content="{x:Static s:Resources.appName}" HorizontalAlignment="Left" Margin="41,31,0,0" VerticalAlignment="Top" FontSize="48" FontFamily="Calibri" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" Cursor="Arrow">
 			<Label.RenderTransform>
@@ -30,18 +31,19 @@
 						<StackPanel x:Name="ModList" ContextMenuService.ShowOnDisabled="True">
 							<StackPanel.ContextMenu>
 								<ContextMenu Name="ModItemContextMenu" Opened="OnOpend" Closed="OnClosed" StaysOpen="True">
-									<MenuItem Header="File" />
-									<MenuItem Header="Delete" />
+									<MenuItem Click="activateClicked" Header="Aktivieren bzw. deaktivieren" />
 								</ContextMenu>
 							</StackPanel.ContextMenu>
-							<TextBlock Text="{Binding modificationName}" />
-							<TextBlock Text="{Binding modificationActivationStatus}" />
-							<TextBlock Text="{Binding modificationOrderingIndex}" />
+							<TextBlock Text="{Binding ModificationName}" />
+							<TextBlock Text="{Binding Enabled}" />
+							<TextBlock Text="{Binding OrderingIndex}" />
 						</StackPanel>
 					</DataTemplate>
 				</ListBox.ItemTemplate>
 			</ListBox>
 		</Grid>
 		<TextBlock x:Name="Version" HorizontalAlignment="Right" Margin="0,0,9,10" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Bottom" IsHitTestVisible="False" FontFamily="Calibri" FontSize="16" FlowDirection="RightToLeft"/>
+		<Label IsHitTestVisible="False" x:Name="statusInformation" Content="TextBlock" HorizontalAlignment="Center" Margin="118,744,762,4" VerticalAlignment="Center" Width="362" Background="{x:Null}" Foreground="#FF248D05" RenderTransformOrigin="0.878,0.5" Height="31" FontFamily="Calibri" FontSize="16" />
+		<fa:FontAwesome IsHitTestVisible="False" Name="successIcon" Icon="Check" Margin="104,751,1129,14" VerticalAlignment="Center" HorizontalAlignment="Center" />
 	</Grid>
 </Window>

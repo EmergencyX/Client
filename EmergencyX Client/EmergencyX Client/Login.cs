@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EmergencyX_Client
 {
-	class Login
+	public class Login
 	{
 
 	}

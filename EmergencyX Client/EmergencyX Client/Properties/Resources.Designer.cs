@@ -97,6 +97,33 @@ namespace EmergencyX_Client.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Changes successfully saved. ähnelt.
+        /// </summary>
+        public static string changesSuccessfullSaved {
+            get {
+                return ResourceManager.GetString("changesSuccessfullSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Emergency X has to be restarted because the Emergency installation path has cahanged. ähnelt.
+        /// </summary>
+        public static string clientRestartNeeded {
+            get {
+                return ResourceManager.GetString("clientRestartNeeded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Application restart ähnelt.
+        /// </summary>
+        public static string clientRestartNeededTitle {
+            get {
+                return ResourceManager.GetString("clientRestartNeededTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Activ? ähnelt.
         /// </summary>
         public static string columnHeaderModActiv {

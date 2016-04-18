@@ -17,6 +17,9 @@ namespace EmergencyX_Client
 		public EmergencyInstallation()
 		{
 			this.setEmergencyInstallationPath(AppConfig.readFromAppConfig("emergencyInstallationPath"));
+			#if DEBUG
+				setEmergencyInstallationPath(@"D:\Program Files (x86)\Emergency 5");
+			#endif
 			EmergencyInstallation.setIsEmergencyInstalled(this.getEmergencyInstallationPath());
 
 		}

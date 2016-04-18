@@ -42,7 +42,7 @@ namespace EmergencyX.ZipService
 		/// <summary>
 		/// Adds files into a ZipArchiv
 		/// </summary>
-		public void packModZip()
+		public void packModDirectoryZip()
 		{
 			// The user should have all files for a mod in on direcotry
 			//

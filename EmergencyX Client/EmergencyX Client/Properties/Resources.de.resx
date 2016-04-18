@@ -183,4 +183,13 @@
   <data name="settingUseZip" xml:space="preserve">
     <value>Zip (standardmäßig)</value>
   </data>
+  <data name="clientRestartNeeded" xml:space="preserve">
+    <value>Emergency X muss jetzt neugestartet werden, da sich der Installationspfad geändert hat.</value>
+  </data>
+  <data name="clientRestartNeededTitle" xml:space="preserve">
+    <value>Programmneustart</value>
+  </data>
+  <data name="changesSuccessfullSaved" xml:space="preserve">
+    <value>Änderungen erfolgreich gespeichert.</value>
+  </data>
 </root>
