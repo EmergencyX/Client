@@ -45,5 +45,6 @@
 		<TextBlock x:Name="Version" HorizontalAlignment="Right" Margin="0,0,9,10" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Bottom" IsHitTestVisible="False" FontFamily="Calibri" FontSize="16" FlowDirection="RightToLeft"/>
 		<Label IsHitTestVisible="False" x:Name="statusInformation" Content="TextBlock" HorizontalAlignment="Center" Margin="118,744,762,4" VerticalAlignment="Center" Width="362" Background="{x:Null}" Foreground="#FF248D05" RenderTransformOrigin="0.878,0.5" Height="31" FontFamily="Calibri" FontSize="16" />
 		<fa:FontAwesome IsHitTestVisible="False" Name="successIcon" Icon="Check" Margin="104,751,1129,14" VerticalAlignment="Center" HorizontalAlignment="Center" />
+		<Button x:Name="testButton" Content="TestAddMod" HorizontalAlignment="Left" Margin="1050,398,0,0" VerticalAlignment="Top" Width="75" Click="testButton_Click"/>
 	</Grid>
 </Window>

@@ -10,7 +10,7 @@ namespace EmergencyX.Emergency5.Modifications
 {
 	public class InstalledMod : INotifyPropertyChanged
 	{
-			
+
 		private string modificationName;
 		private string enabled;
 		private string orderingIndex;

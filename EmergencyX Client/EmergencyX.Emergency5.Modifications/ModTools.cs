@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Windows;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,9 +15,21 @@ namespace EmergencyX.Emergency5.Modifications
 	/// <summary>
 	/// A collection of useful methods related to mods
 	/// </summary>
-	public class ModTools
+	public class ModTools : INotifyPropertyChanged
 	{
-		private List<InstalledMod> installedModifications { get; set; }
+		private SortableObservableCollection<InstalledMod> installedModifications;
+		public SortableObservableCollection<InstalledMod> InstalledModifications
+		{
+			get
+			{
+				return installedModifications;
+			}
+
+			set
+			{
+				installedModifications = value;
+			}
+		}
 
 		public event PropertyChangedEventHandler PropertyChanged;
 
@@ -24,7 +37,7 @@ namespace EmergencyX.Emergency5.Modifications
 
 		public void setInstalledModifications(string jsonFilePath)
 		{
-			this.installedModifications = new List<InstalledMod>();
+			this.InstalledModifications = new SortableObservableCollection<InstalledMod>();
 
 			Dictionary<string, Dictionary<string, string>> mods = new Dictionary<string, Dictionary<string, string>>();
 			mods = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, string>>>(File.ReadAllText(jsonFilePath));
@@ -48,19 +61,30 @@ namespace EmergencyX.Emergency5.Modifications
 				}
 
 				InstalledMod currentMod = new InstalledMod(modName, modOption[0], modOption[1]);
-				this.installedModifications.Add(currentMod);
+				this.InstalledModifications.Add(currentMod);
 
 			}
 			NotifyPropertyChanged();
 		}
 
-		public List<InstalledMod> getInstalledModifications()
+		public SortableObservableCollection<InstalledMod> getInstalledModifications()
 		{
-			return this.installedModifications;
+			return this.InstalledModifications;
 		}
 
 		#endregion getterAndSetter
 
+		/// <summary>
+		/// Adds a modification to our list
+		/// </summary>
+		/// <param name="modName">The name of the mod</param>
+		/// <param name="activ">"true" or "false"</param>
+		/// <param name="order">The "OrderingIndex"</param>
+		public void addModification(string modName, string activ, string order)
+		{
+			this.InstalledModifications.Add(new InstalledMod(modName, activ, order));
+			this.installedModifications.Sort(x => x.OrderingIndex, ListSortDirection.Ascending);
+		}
 
 		// Implement NotifyPropertyChanged
 		//
@@ -79,8 +103,7 @@ namespace EmergencyX.Emergency5.Modifications
 			setInstalledModifications(jsonFile);
 		}
 
-		// static Methodes down there...
-		//
+		#region staticMethods
 
 
 		/// <summary>
@@ -89,7 +112,7 @@ namespace EmergencyX.Emergency5.Modifications
 		/// <param name="modIndex">The index displayed in the listbox</param>
 		/// <param name="installed">A list of all installed Emergency 5 Mods</param>
 		/// <returns></returns>
-		public static bool modifyModActivityState(int modIndex, List<InstalledMod> installed)
+		public static bool modifyModActivityState(int modIndex, ObservableCollection<InstalledMod> installed)
 		{
 			if (installed[modIndex].Enabled == "false")
 			{
@@ -118,7 +141,7 @@ namespace EmergencyX.Emergency5.Modifications
 		/// <param name="installed">a list of installed mods</param>
 		/// <param name="jsonFilePath">the path to the emergeny mod settings file</param>
 		/// <returns>true or false</returns>
-		public static bool writeJsonModFile(List<InstalledMod> installed, string jsonFilePath)
+		public static bool writeJsonModFile(SortableObservableCollection<InstalledMod> installed, string jsonFilePath)
 		{
 			// Reformate List into  Dictonary
 			//	
@@ -153,6 +176,6 @@ namespace EmergencyX.Emergency5.Modifications
 			return true;
 		}
 
-
+		#endregion staticMethods
 	}
 }

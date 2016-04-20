@@ -29,11 +29,11 @@ namespace EmergencyX_Client
 			InitializeComponent();
 			tbxEmergencyPath.Text = AppConfig.readFromAppConfig("emergencyInstallationPath");
 			this.oldEmergencyPath = tbxEmergencyPath.Text;
-			
-			#if DEBUG
-				tbxEmergencyPath.Text = @"D:\Program Files (x86)\Emergency 5";
-				this.oldEmergencyPath = @"D:\Program Files (x86)\Emergency 5";
-			#endif
+
+#if DEBUG
+			tbxEmergencyPath.Text = @"D:\Program Files (x86)\Emergency 5";
+			this.oldEmergencyPath = @"D:\Program Files (x86)\Emergency 5";
+#endif
 
 			#region ZipOrBrotliMode
 			switch (AppConfig.readFromAppConfig("compressionAlgorithm"))

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using EmergencyX.Emergency5.Modifications;
 using System.Linq;
 using System.Text;
@@ -23,7 +24,10 @@ namespace EmergencyX_Client
 	public partial class MainWindow : Window
 	{
 
-		public List<InstalledMod> InstalledMods { get; set; }
+		public SortableObservableCollection<InstalledMod> InstalledMods { get; set; }
+		public string appDataModificationsJsonFile { get; set; }
+		public ModTools mainWindowModTools { get; set; }
+
 
 		//<color variables>
 		public Brush successTextColor = new SolidColorBrush(Color.FromRgb(21, 107, 50));
@@ -33,13 +37,9 @@ namespace EmergencyX_Client
 		public MainWindow()
 		{
 			InitializeComponent();
-			
-		}
+			this.appDataModificationsJsonFile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Promotion Software GmbH\EMERGENCY 5\mods\mods_user_settings.json";
+			this.mainWindowModTools = new ModTools(this.appDataModificationsJsonFile);
 
-		private void settingsClick(object sender, RoutedEventArgs e)
-		{
-			Settings emergencyXSettings = new Settings();
-			emergencyXSettings.Show();
 		}
 
 		//some functions in here work better if Loaded Event is used..Dont know why...
@@ -69,14 +69,11 @@ namespace EmergencyX_Client
 			EmergencyInstallation myEmergencyInstallation = new EmergencyInstallation();
 
 			//holds the full path to appdata mod 
-			string appDataModificationsJsonFile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Promotion Software GmbH\EMERGENCY 5\mods\mods_user_settings.json";
 
 			//if somewhere (somehow) an emergency installation is found and this installation could been verified
 			if (EmergencyInstallation.getIsEmergencyInstalled() && myEmergencyInstallation.verifyEmergencyInstallation(myEmergencyInstallation.getEmergencyInstallationPath()))
 			{
-				ModTools mainWindowModTools = new ModTools(appDataModificationsJsonFile);
-				InstalledMods = mainWindowModTools.getInstalledModifications();
-
+				this.InstalledMods = mainWindowModTools.getInstalledModifications();
 				DataContext = this;
 
 			}
@@ -95,12 +92,12 @@ namespace EmergencyX_Client
 				ModListContainer.UnselectAll();
 		}
 
+		#region ClickEvents
 		private void activateClicked(object sender, RoutedEventArgs e)
 		{
 			ModTools.modifyModActivityState(ModListContainer.SelectedIndex, InstalledMods);
-			string appDataModificationsJsonFile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Promotion Software GmbH\EMERGENCY 5\mods\mods_user_settings.json";
-			
-			if(ModTools.writeJsonModFile(InstalledMods, appDataModificationsJsonFile))
+
+			if (ModTools.writeJsonModFile(InstalledMods, appDataModificationsJsonFile))
 			{
 				statusInformation.Content = Properties.Resources.changesSuccessfullSaved;
 				// Textcolor
@@ -111,6 +108,20 @@ namespace EmergencyX_Client
 			}
 
 		}
+
+		private void settingsClick(object sender, RoutedEventArgs e)
+		{
+			Settings emergencyXSettings = new Settings();
+			emergencyXSettings.Show();
+		}
+
+		private void testButton_Click(object sender, RoutedEventArgs e)
+		{
+			mainWindowModTools.addModification("test", "true", "1");
+			ModTools.writeJsonModFile(this.mainWindowModTools.InstalledModifications, this.appDataModificationsJsonFile);
+		}
+
+		#endregion ClickEvents
 
 		#region ModListContextMenu
 
@@ -131,5 +142,6 @@ namespace EmergencyX_Client
 		{
 			updateSpecificWindowData();
 		}
+
 	}
 }
