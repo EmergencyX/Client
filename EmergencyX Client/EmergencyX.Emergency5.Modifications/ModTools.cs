@@ -112,7 +112,7 @@ namespace EmergencyX.Emergency5.Modifications
 		/// <param name="modIndex">The index displayed in the listbox</param>
 		/// <param name="installed">A list of all installed Emergency 5 Mods</param>
 		/// <returns></returns>
-		public static bool modifyModActivityState(int modIndex, ObservableCollection<InstalledMod> installed)
+		public static bool modifyModActivityState(int modIndex, SortableObservableCollection<InstalledMod> installed)
 		{
 			if (installed[modIndex].Enabled == "false")
 			{
@@ -132,6 +132,22 @@ namespace EmergencyX.Emergency5.Modifications
 			// return true if all is nice :-)
 			//
 
+			return true;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="modIndex"></param>
+		/// <param name="installed"></param>
+		/// <returns></returns>
+		public static bool changeOrderingIndex(int modIndex, string newIndex, SortableObservableCollection<InstalledMod> installed)
+		{
+			string helper;
+			helper = installed[modIndex].OrderingIndex;
+			installed.Where(e => e.OrderingIndex.Equals(newIndex)).FirstOrDefault().OrderingIndex = helper;
+			installed[modIndex].OrderingIndex = newIndex.ToString();
+			installed.Sort(x => x.OrderingIndex, ListSortDirection.Ascending);
 			return true;
 		}
 
@@ -177,5 +193,6 @@ namespace EmergencyX.Emergency5.Modifications
 		}
 
 		#endregion staticMethods
+
 	}
 }

@@ -121,27 +121,18 @@ namespace EmergencyX_Client
 			ModTools.writeJsonModFile(this.mainWindowModTools.InstalledModifications, this.appDataModificationsJsonFile);
 		}
 
+		private void oderingIndexClicked(object sender, RoutedEventArgs e)
+		{
+			ModTools.changeOrderingIndex(ModListContainer.SelectedIndex, "1", this.InstalledMods);
+		}
+
 		#endregion ClickEvents
-
-		#region ModListContextMenu
-
-		private void OnOpend(object sender, RoutedEventArgs e)
-		{
-
-		}
-
-		private void OnClosed(object sender, RoutedEventArgs e)
-		{
-
-		}
-
-
-		#endregion ModListContextMenu
 
 		public void MainWindowIsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
 		{
 			updateSpecificWindowData();
 		}
 
+		
 	}
 }

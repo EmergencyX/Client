@@ -8,7 +8,7 @@ using System.Windows;
 // Attribute gesteuert. Ändern Sie diese Attributwerte, um die Informationen zu ändern,
 // die einer Assembly zugeordnet sind.
 [assembly: AssemblyTitle("EmergencyX Client")]
-[assembly: AssemblyDescription("Emergency Explorer - Build: Enterprise NX-01")]
+[assembly: AssemblyDescription("Emergency Explorer - Build: Enterprise NX-01 Beta")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("EmergencyX Client")]
@@ -33,11 +33,11 @@ using System.Windows;
 
 [assembly: ThemeInfo(
     ResourceDictionaryLocation.None, //Speicherort der designspezifischen Ressourcenwörterbücher
-                                     //(wird verwendet, wenn eine Ressource auf der Seite
-                                     // oder in den Anwendungsressourcen-Wörterbüchern nicht gefunden werden kann.)
+				     //(wird verwendet, wenn eine Ressource auf der Seite
+				     // oder in den Anwendungsressourcen-Wörterbüchern nicht gefunden werden kann.)
     ResourceDictionaryLocation.SourceAssembly //Speicherort des generischen Ressourcenwörterbuchs
-                                              //(wird verwendet, wenn eine Ressource auf der Seite, in der Anwendung oder einem 
-                                              // designspezifischen Ressourcenwörterbuch nicht gefunden werden kann.)
+					      //(wird verwendet, wenn eine Ressource auf der Seite, in der Anwendung oder einem 
+					      // designspezifischen Ressourcenwörterbuch nicht gefunden werden kann.)
 )]
 
 

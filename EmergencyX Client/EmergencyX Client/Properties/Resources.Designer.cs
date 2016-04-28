@@ -97,6 +97,15 @@ namespace EmergencyX_Client.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Change load order  ähnelt.
+        /// </summary>
+        public static string c {
+            get {
+                return ResourceManager.GetString("c", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Changes successfully saved. ähnelt.
         /// </summary>
         public static string changesSuccessfullSaved {
@@ -147,6 +156,15 @@ namespace EmergencyX_Client.Properties {
         public static string columnHeaderModOrderingIndex {
             get {
                 return ResourceManager.GetString("columnHeaderModOrderingIndex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Enable or disable marked modification ähnelt.
+        /// </summary>
+        public static string e {
+            get {
+                return ResourceManager.GetString("e", resourceCulture);
             }
         }
         
@@ -282,6 +300,15 @@ namespace EmergencyX_Client.Properties {
         public static string signOutButtonToolTip {
             get {
                 return ResourceManager.GetString("signOutButtonToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die test ähnelt.
+        /// </summary>
+        public static string test {
+            get {
+                return ResourceManager.GetString("test", resourceCulture);
             }
         }
     }

@@ -192,4 +192,15 @@
   <data name="changesSuccessfullSaved" xml:space="preserve">
     <value>Änderungen erfolgreich gespeichert.</value>
   </data>
+  <data name="c" xml:space="preserve">
+    <value>Ladereihenfolge ändern</value>
+    <comment>Text Ressource for "change orderingIndexContext MenuItem"</comment>
+  </data>
+  <data name="e" xml:space="preserve">
+    <value>Aktivieren bzw. deaktiveren der selektierten Modifikation</value>
+    <comment>Text Ressource for "enable or disable Context MenuItem"</comment>
+  </data>
+  <data name="test" xml:space="preserve">
+    <value>test</value>
+  </data>
 </root>
