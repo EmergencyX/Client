@@ -97,7 +97,7 @@ namespace EmergencyX_Client.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Change load order  ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die _Change load order  ähnelt.
         /// </summary>
         public static string c {
             get {
@@ -160,7 +160,7 @@ namespace EmergencyX_Client.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Enable or disable marked modification ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die _Enable or disable marked modification ähnelt.
         /// </summary>
         public static string e {
             get {
@@ -214,7 +214,34 @@ namespace EmergencyX_Client.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Settings ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Activ:  ähnelt.
+        /// </summary>
+        public static string prefixEnabled {
+            get {
+                return ResourceManager.GetString("prefixEnabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Modification:  ähnelt.
+        /// </summary>
+        public static string prefixModificationName {
+            get {
+                return ResourceManager.GetString("prefixModificationName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Ordering Index:   ähnelt.
+        /// </summary>
+        public static string prefixOrderingIndex {
+            get {
+                return ResourceManager.GetString("prefixOrderingIndex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die _Settings ähnelt.
         /// </summary>
         public static string settingsButtonContent {
             get {

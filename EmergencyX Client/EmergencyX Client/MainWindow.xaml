@@ -6,56 +6,132 @@
         xmlns:local="clr-namespace:EmergencyX_Client"
 	xmlns:s="clr-namespace:EmergencyX_Client.Properties"
 	xmlns:fa="http://schemas.fontawesome.io/icons/"
+	xmlns:em5="clr-namespace:EmergencyX.Emergency5.Modifications;assembly=EmergencyX.Emergency5.Modifications"
         mc:Ignorable="d"
-        Title="{x:Static s:Resources.appTitle}" Height="810" Width="1250" SizeToContent="WidthAndHeight" MinWidth="1250" MinHeight="720" IsVisibleChanged="MainWindowIsVisibleChanged" >
-	<Window.Resources>	<!-- For the context menu to work, we must shift it into a style, which means that the context menu is now in a
-				visual tree that is more closely related to the current data context. All we have to do then is set the style, 
-				which hooks up the context menu. -->
-				<Style x:Key="ContextMenuStyle" TargetType="{x:Type StackPanel}">
-					<Setter Property="ContextMenu" Value="{DynamicResource TreeViewContextMenu}"/>
-				</Style>
-				<ContextMenu x:Key="TreeViewContextMenu">
-					<MenuItem />
-				</ContextMenu>
+        Title="{x:Static s:Resources.appTitle}" SizeToContent="WidthAndHeight" MinWidth="1176" MinHeight="664" IsVisibleChanged="MainWindowIsVisibleChanged" ResizeMode="CanMinimize" >
+	<!-- Color stuff down here -->
+	<Window.Resources>
+		<!--Style Stuff-->
+		<SolidColorBrush x:Key="ButtonBackgroundColor" Color="White"/>
+
+		<!--Templates-->
+		<DataTemplate DataType="{x:Type em5:InstalledMod}">
+			<StackPanel>
+
+				<TextBlock  Foreground="White" FontWeight="Bold">
+					<Run Text="{x:Static s:Resources.prefixModificationName}"/>
+					<Run Text="{Binding ModificationName}" />
+				</TextBlock>
+				<TextBlock Foreground="White">
+					<Run Text="{x:Static s:Resources.prefixOrderingIndex}"/>
+					<Run Text="{Binding OrderingIndex}" />
+				</TextBlock>
+				<TextBlock Foreground="White">
+					<Run Text="{x:Static s:Resources.prefixEnabled}"/>
+					<Run Text="{Binding Enabled}" />
+				</TextBlock>
+
+			</StackPanel>
+		</DataTemplate>
 	</Window.Resources>
-	<Grid Cursor="Arrow" Name="EmergencyXClient" x:Uid="EmergencyXClient" Loaded="mainWindowLoaded">
-		<Label x:Name="appHeadline" Content="{x:Static s:Resources.appName}" HorizontalAlignment="Left" Margin="41,31,0,0" VerticalAlignment="Top" FontSize="48" FontFamily="Calibri" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" Cursor="Arrow">
-			<Label.RenderTransform>
-				<TransformGroup>
-					<ScaleTransform/>
-					<SkewTransform/>
-					<RotateTransform Angle="-7.853"/>
-					<TranslateTransform/>
-				</TransformGroup>
-			</Label.RenderTransform>
-		</Label>
-		<Menu x:Name="menu" HorizontalAlignment="Right" Height="128" Margin="0,15,0,0" Width="120" VerticalAlignment="Top" Focusable="False" IsHitTestVisible="True" TabIndex="2">
-			<Button x:Name="signIn" Content="{x:Static s:Resources.signInButtonContent}" FontFamily="Calibri" MinWidth="100" Padding="5,3" UseLayoutRounding="False" FontSize="16" Margin="3,7,3,3.5" ToolTip="{x:Static s:Resources.signInButtonToolTip}" />
-			<Button x:Name="settings" Content="{x:Static s:Resources.settingsButtonContent}" FontFamily="Calibri" Padding="5,3" UseLayoutRounding="False" MinWidth="100" FontSize="16" Margin="3,7,3,3.5" Click="settingsClick"/>
-		</Menu>
-		<Grid x:Name="modOverview" Margin="100,180,260,138" Background="#FF8D8C8D" AllowDrop="True">
-			<TextBlock x:Name="textBlock" Margin="180.021,254.703,160.731,243.743" TextWrapping="Wrap" FontFamily="Calibri" FontSize="40" FontWeight="Bold" ><Label Name="lblIsEmergencyInstalled"/></TextBlock>
-			<ListBox x:Name="ModListContainer" ItemsSource="{Binding InstalledMods}" SelectionChanged="ListBox_SelectionChanged" MouseDown="ModListContainerMouseDown" >
-				<ListBox.ItemTemplate>
-					<DataTemplate>
-						<StackPanel x:Name="ModList" ContextMenuService.ShowOnDisabled="True" Style="{StaticResource ContextMenuStyle}">
-							<StackPanel.ContextMenu>
-								<ContextMenu Name="ModItemContextMenu" StaysOpen="True">
-									<MenuItem Click="activateClicked" Header="{x:Static s:Resources.e}" />
-									<MenuItem Header="{x:Static s:Resources.c}" Click="oderingIndexClicked" />
-								</ContextMenu>
-							</StackPanel.ContextMenu>
-							<TextBlock Text="{Binding ModificationName}" />
-							<TextBlock Text="{Binding Enabled}" />
-							<TextBlock Text="{Binding OrderingIndex}" />
-						</StackPanel>
-					</DataTemplate>
-				</ListBox.ItemTemplate>
-			</ListBox>
+	<!--Content beginning-->
+
+	<Grid>
+		<Grid.Background>
+			<ImageBrush ImageSource="Properties/emergency5 2016-05-23 23-44-08-53.jpg"/>
+		</Grid.Background>
+
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="60*"/>
+			<ColumnDefinition Width="13*"/>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="80*"/>
+			<RowDefinition Height="553*"/>
+		</Grid.RowDefinitions>
+		<Grid Grid.Column="0" Grid.Row="0" >
+			<!-- Left upper -->
+			<TextBlock x:Name="txbEmergencyX" HorizontalAlignment="Left" Margin="50,20,0,20" TextWrapping="Wrap" Text="Emergency X" VerticalAlignment="Top" 
+				FontSize="64" FontWeight="Bold" FontFamily="pack://application:,,,/Properties/#Impossible - 500" FontStyle="Italic">
+				<TextBlock.Foreground>
+					<RadialGradientBrush>
+						<GradientStop Color="Black" Offset="0"/>
+						<GradientStop Color="#FFFB7644" Offset="1"/>
+					</RadialGradientBrush>
+				</TextBlock.Foreground>
+			</TextBlock>
 		</Grid>
-		<TextBlock x:Name="Version" HorizontalAlignment="Right" Margin="0,0,9,10" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Bottom" IsHitTestVisible="False" FontFamily="Calibri" FontSize="16" FlowDirection="RightToLeft"/>
-		<Label IsHitTestVisible="False" x:Name="statusInformation" Content="TextBlock" HorizontalAlignment="Center" Margin="118,744,762,4" VerticalAlignment="Center" Width="362" Background="{x:Null}" Foreground="#FF248D05" RenderTransformOrigin="0.878,0.5" Height="31" FontFamily="Calibri" FontSize="16" />
-		<fa:FontAwesome IsHitTestVisible="False" Name="successIcon" Icon="Check" Margin="104,751,1129,14" VerticalAlignment="Center" HorizontalAlignment="Center" />
-		<Button x:Name="testButton" UseLayoutRounding="False" Content="TestAddMod" HorizontalAlignment="Right" Margin="0,404,45,0" VerticalAlignment="Top" Width="75" Click="testButton_Click"/>
+
+		<!--Left Lower-->
+		<Grid Name="ModificationArea" Grid.Column="0" Grid.Row="1">
+
+			<Grid.RowDefinitions>
+				<RowDefinition Height="433*"/>
+				<RowDefinition Height="77*"/>
+			</Grid.RowDefinitions>
+
+			<!-- Left Inner Upper -->
+			<Grid Grid.Row="0" Height="400">
+				<ListBox x:Name="liModificationList" ItemsSource="{Binding InstalledMods}" Background="Black" Margin="10,0,0,10" BorderThickness="0" ScrollViewer.VerticalScrollBarVisibility="Visible" Opacity="0.7" />
+			</Grid>
+			<!--/ End Left inner Upper-->
+
+
+			<Grid Grid.Row="1" Margin="0,0,0,0">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="200*"/>
+					<ColumnDefinition Width="281*"/>
+				</Grid.ColumnDefinitions>
+
+				<!-- Left inner buttom -->
+				<Grid Grid.Column="0">
+
+				</Grid>
+				<!--/ End left inner buttom-->
+
+				<!--Right inner buttom-->
+				<Grid Grid.Column="1">
+					<Menu Name="ModifcationMenuPanel" Width="530" Height="80">
+
+						<Menu.Background>
+							<SolidColorBrush Color="#FFF0F0F0" Opacity="0"/>
+						</Menu.Background>
+
+						<Button x:Name="btnChangeOrderingIndex" Content="{x:Static s:Resources.c}" Height="76" Width="250" TabIndex="2" BorderThickness="10,0,0,0" TextOptions.TextFormattingMode="Display" Background="{DynamicResource ButtonBackgroundColor}" >
+							<Button.BorderBrush>
+								<SolidColorBrush Color="{DynamicResource ButtonBorderLeftColor}"/>
+							</Button.BorderBrush>
+						</Button>
+						<Button x:Name="btnAcivated"  Height="74" Width="250" TabIndex="3" BorderThickness="10,0,0,0" TextOptions.TextFormattingMode="Display" Background="{DynamicResource ButtonBackgroundColor}">
+							<Button.BorderBrush>
+								<SolidColorBrush Color="{DynamicResource ButtonBorderLeftColor}"/>
+							</Button.BorderBrush>
+							<AccessText Text="{x:Static s:Resources.e}" TextWrapping="Wrap" TextAlignment="Center"/>
+						</Button>
+					</Menu>
+				</Grid>
+				<!-- /End right inner buttom  -->
+			</Grid>
+		</Grid>
+		<!--/ End left lower-->
+
+		<!--Right upper -->
+		<Grid Name="UserInformationBox" Grid.Column="2" Grid.Row="0" Opacity="0.3">
+
+		</Grid>
+		<!--/ End Right upper -->
+
+		<!--Right lower -->
+		<Grid Grid.Column="2" Grid.Row="1">
+			<Button x:Name="btnSettings" TabIndex="4" Margin="4,439,16,4" Height="74" BorderThickness="10,0,0,0" Background="White" Click="btnSettings_Click" >
+				<Button.BorderBrush>
+					<SolidColorBrush Color="{DynamicResource ButtonBorderLeftColor}"/>
+				</Button.BorderBrush>
+				<AccessText Text="{x:Static s:Resources.settingsButtonContent}" />
+			</Button>
+		</Grid>
+		<!--/ End Right lower -->
 	</Grid>
+
+
 </Window>

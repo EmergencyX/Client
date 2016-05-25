@@ -154,7 +154,7 @@
     <value>Error while saving the settings.</value>
   </data>
   <data name="settingsButtonContent" xml:space="preserve">
-    <value>Settings</value>
+    <value>_Settings</value>
   </data>
   <data name="settingsButtonToolTip" xml:space="preserve">
     <value>Modify settings</value>
@@ -193,14 +193,23 @@
     <value>Changes successfully saved.</value>
   </data>
   <data name="e" xml:space="preserve">
-    <value>Enable or disable marked modification</value>
+    <value>_Enable or disable marked modification</value>
     <comment>Text Ressource for "enable or disable Context MenuItem"</comment>
   </data>
   <data name="c" xml:space="preserve">
-    <value>Change load order </value>
+    <value>_Change load order </value>
     <comment>Text Ressource for "change orderingIndexContext MenuItem"</comment>
   </data>
   <data name="test" xml:space="preserve">
     <value>test</value>
+  </data>
+  <data name="prefixEnabled" xml:space="preserve">
+    <value>Activ: </value>
+  </data>
+  <data name="prefixModificationName" xml:space="preserve">
+    <value>Modification: </value>
+  </data>
+  <data name="prefixOrderingIndex" xml:space="preserve">
+    <value>Ordering Index:  </value>
   </data>
 </root>

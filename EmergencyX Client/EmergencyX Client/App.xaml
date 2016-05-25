@@ -5,5 +5,7 @@
              StartupUri="MainWindow.xaml">
 	<Application.Resources>
 
+		<Color x:Key="ButtonBorderLeftColor">#FF089EDD</Color>
+
 	</Application.Resources>
 </Application>

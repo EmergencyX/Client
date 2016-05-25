@@ -114,6 +114,7 @@ namespace EmergencyX_Client
 			EmergencyInstallation emergency = new EmergencyInstallation();
 			emergency.setEmergencyInstallationPath(AppConfig.readFromAppConfig("emergencyInstallationPath"));
 			Close();
+			
 		}
 	}
 }
