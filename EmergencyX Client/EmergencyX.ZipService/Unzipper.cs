@@ -48,5 +48,18 @@ namespace EmergencyX.ZipService
 
 		}
 
+		public void extractSingleFile(string neededFile)
+		{
+			ZipArchive myArchiv = ZipFile.Open(getZipFileName(), ZipArchiveMode.Read);
+			List<ZipArchiveEntry> myArchiveEntrys = myArchiv.Entries.ToList();
+				
+		}
+
+		public void extractNumberOfFiles(List<string> neededFiles)
+		{
+			ZipArchive myArchiv = ZipFile.Open(getZipFileName(), ZipArchiveMode.Read);
+			List<ZipArchiveEntry> myArchiveEntrys = myArchiv.Entries.ToList();
+		}
+
 	}
 }

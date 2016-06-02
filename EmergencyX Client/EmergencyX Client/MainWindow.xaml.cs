@@ -30,12 +30,6 @@ namespace EmergencyX_Client
 		public ModTools mainWindowModTools { get; set; }
 		public string modificationsDir { get; set; }
 
-
-		//<color variables>
-		public Brush successTextColor = new SolidColorBrush(Color.FromRgb(21, 107, 50));
-
-		//</colorvariables>
-
 		public MainWindow()
 		{
 			InitializeComponent();
@@ -44,6 +38,7 @@ namespace EmergencyX_Client
 			this.modificationsDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Promotion Software GmbH\EMERGENCY 5\mods";
 			updateSpecificWindowData();
 			this.DataContext = this;
+			txbSuccessfullSaved.Visibility = Visibility.Hidden;
 		}
 
 		//some functions in here work better if Loaded Event is used..Dont know why...
@@ -91,45 +86,48 @@ namespace EmergencyX_Client
 
 		private void ModListContainerMouseDown(object sender, MouseButtonEventArgs e)
 		{
-		//	if (e.LeftButton == MouseButtonState.Pressed)
-				//ModListContainer.UnselectAll();
+			if (e.LeftButton == MouseButtonState.Pressed)
+			{ 
+				liModificationList.UnselectAll();
+				if (txbSuccessfullSaved.IsVisible == true) 
+				{ 
+					txbSuccessfullSaved.Visibility = Visibility.Hidden;
+				}
+			}
 		}
 
 
 		#region ClickEvents
-		private void activateClicked(object sender, RoutedEventArgs e)
-		{
-			//ModTools.modifyModActivityState(ModListContainer.SelectedIndex, InstalledMods);
-
-			if (ModTools.writeJsonModFile(InstalledMods, appDataModificationsJsonFile))
-			{
-				//statusInformation.Content = Properties.Resources.changesSuccessfullSaved;
-				// Textcolor
-				//statusInformation.Foreground = successTextColor;
-				//successIcon.Foreground = successTextColor;
-				//statusInformation.Visibility = Visibility.Visible;
-			//	successIcon.Visibility = Visibility.Visible;
-			}
-
-		}
-
-		private void testButton_Click(object sender, RoutedEventArgs e)
-		{
-			mainWindowModTools.addModification("test", "true", "1");
-			ModTools.writeJsonModFile(this.mainWindowModTools.InstalledModifications, this.appDataModificationsJsonFile);
-		}
-
-		private void oderingIndexClicked(object sender, RoutedEventArgs e)
-		{
-			//ModTools.changeOrderingIndex(ModListContainer.SelectedIndex, "1", this.InstalledMods);
-		}
-
 
 		private void btnSettings_Click(object sender, RoutedEventArgs e)
 		{
 			Settings emergencyXSettings = new Settings();
 			emergencyXSettings.Show();
 		}
+
+		private void btnLogin_Click(object sender, RoutedEventArgs e)
+		{
+			
+			Login loginHandler = new Login();
+			loginHandler.Test();
+		}
+
+		private void btnChangeOrderingIndex_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void btnAcivated_Click(object sender, RoutedEventArgs e)
+		{
+			ModTools.modifyModActivityState(liModificationList.SelectedIndex, InstalledMods);
+
+			if (ModTools.writeJsonModFile(InstalledMods, appDataModificationsJsonFile))
+			{
+				txbSuccessfullSaved.Text = Properties.Resources.changesSuccessfullSaved;
+				txbSuccessfullSaved.Visibility = Visibility.Visible;
+			}
+		}
+
 		#endregion ClickEvents
 
 		public void MainWindowIsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)

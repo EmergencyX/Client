@@ -85,7 +85,7 @@
 
 				<!-- Left inner buttom -->
 				<Grid Grid.Column="0">
-
+					<TextBlock x:Name="txbSuccessfullSaved" HorizontalAlignment="Left" Margin="10,54,0,0" TextWrapping="Wrap" Text="Placeholder" VerticalAlignment="Top" Foreground="White"/>
 				</Grid>
 				<!--/ End left inner buttom-->
 
@@ -97,12 +97,12 @@
 							<SolidColorBrush Color="#FFF0F0F0" Opacity="0"/>
 						</Menu.Background>
 
-						<Button x:Name="btnChangeOrderingIndex" Content="{x:Static s:Resources.c}" Height="76" Width="250" TabIndex="2" BorderThickness="10,0,0,0" TextOptions.TextFormattingMode="Display" Background="{DynamicResource ButtonBackgroundColor}" >
+						<Button x:Name="btnChangeOrderingIndex" Content="{x:Static s:Resources.c}" Height="76" Width="250" TabIndex="2" BorderThickness="10,0,0,0" TextOptions.TextFormattingMode="Display" Background="{DynamicResource ButtonBackgroundColor}" Click="btnChangeOrderingIndex_Click" >
 							<Button.BorderBrush>
 								<SolidColorBrush Color="{DynamicResource ButtonBorderLeftColor}"/>
 							</Button.BorderBrush>
 						</Button>
-						<Button x:Name="btnAcivated"  Height="74" Width="250" TabIndex="3" BorderThickness="10,0,0,0" TextOptions.TextFormattingMode="Display" Background="{DynamicResource ButtonBackgroundColor}">
+						<Button x:Name="btnAcivated"  Height="74" Width="250" TabIndex="3" BorderThickness="10,0,0,0" TextOptions.TextFormattingMode="Display" Background="{DynamicResource ButtonBackgroundColor}" Click="btnAcivated_Click">
 							<Button.BorderBrush>
 								<SolidColorBrush Color="{DynamicResource ButtonBorderLeftColor}"/>
 							</Button.BorderBrush>
@@ -117,13 +117,14 @@
 
 		<!--Right upper -->
 		<Grid Name="UserInformationBox" Grid.Column="2" Grid.Row="0" Opacity="0.3">
+			<Button x:Name="btnLogin" Content="LoginTest" HorizontalAlignment="Left" Margin="10,88,0,0" VerticalAlignment="Top" Width="75" Click="btnLogin_Click"/>
 
 		</Grid>
 		<!--/ End Right upper -->
 
 		<!--Right lower -->
 		<Grid Grid.Column="2" Grid.Row="1">
-			<Button x:Name="btnSettings" TabIndex="4" Margin="4,439,16,4" Height="74" BorderThickness="10,0,0,0" Background="White" Click="btnSettings_Click" >
+			<Button Panel.ZIndex="100" x:Name="btnSettings" TabIndex="4" Margin="4,439,16,4" Height="74" BorderThickness="10,0,0,0" Background="White" Click="btnSettings_Click" >
 				<Button.BorderBrush>
 					<SolidColorBrush Color="{DynamicResource ButtonBorderLeftColor}"/>
 				</Button.BorderBrush>
