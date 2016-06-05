@@ -8,7 +8,7 @@
 	xmlns:fa="http://schemas.fontawesome.io/icons/"
 	xmlns:em5="clr-namespace:EmergencyX.Emergency5.Modifications;assembly=EmergencyX.Emergency5.Modifications"
         mc:Ignorable="d"
-        Title="{x:Static s:Resources.appTitle}" SizeToContent="WidthAndHeight" MinWidth="1176" MinHeight="664" IsVisibleChanged="MainWindowIsVisibleChanged" ResizeMode="CanMinimize" >
+        Title="{x:Static s:Resources.appTitle}" SizeToContent="WidthAndHeight" MinWidth="1176" MinHeight="664" IsVisibleChanged="MainWindowIsVisibleChanged" ResizeMode="CanMinimize" Icon="256px.ico" >
 	<!-- Color stuff down here -->
 	<Window.Resources>
 		<!--Style Stuff-->
@@ -33,6 +33,10 @@
 
 			</StackPanel>
 		</DataTemplate>
+		<RadialGradientBrush x:Key="Brush1">
+			<GradientStop Color="Black" Offset="0"/>
+			<GradientStop Color="#FFFB7644" Offset="1"/>
+		</RadialGradientBrush>
 	</Window.Resources>
 	<!--Content beginning-->
 
@@ -52,13 +56,15 @@
 		<Grid Grid.Column="0" Grid.Row="0" >
 			<!-- Left upper -->
 			<TextBlock x:Name="txbEmergencyX" HorizontalAlignment="Left" Margin="50,20,0,20" TextWrapping="Wrap" Text="Emergency X" VerticalAlignment="Top" 
-				FontSize="64" FontWeight="Bold" FontFamily="pack://application:,,,/Properties/#Impossible - 500" FontStyle="Italic">
-				<TextBlock.Foreground>
-					<RadialGradientBrush>
-						<GradientStop Color="Black" Offset="0"/>
-						<GradientStop Color="#FFFB7644" Offset="1"/>
-					</RadialGradientBrush>
-				</TextBlock.Foreground>
+				FontSize="64" FontWeight="Bold" FontFamily="pack://application:,,,/Properties/#Impossible - 500" FontStyle="Italic" Foreground="White">
+				<TextBlock.Effect>
+					<DropShadowEffect
+					ShadowDepth="4"
+					Direction="330"
+					Color="Black"
+					Opacity="0.9"
+					BlurRadius="4" />
+				</TextBlock.Effect>		
 			</TextBlock>
 		</Grid>
 
@@ -116,10 +122,7 @@
 		<!--/ End left lower-->
 
 		<!--Right upper -->
-		<Grid Name="UserInformationBox" Grid.Column="2" Grid.Row="0" Opacity="0.3">
-			<Button x:Name="btnLogin" Content="LoginTest" HorizontalAlignment="Left" Margin="10,88,0,0" VerticalAlignment="Top" Width="75" Click="btnLogin_Click"/>
 
-		</Grid>
 		<!--/ End Right upper -->
 
 		<!--Right lower -->
@@ -130,7 +133,18 @@
 				</Button.BorderBrush>
 				<AccessText Text="{x:Static s:Resources.settingsButtonContent}" />
 			</Button>
+			<Button Panel.ZIndex="100" x:Name="btn_RunEmergency" TabIndex="4" Margin="4,360,16,83" Height="74" BorderThickness="10,0,0,0" Background="White" Click="btn_RunEmergency_Click" >
+				<Button.BorderBrush>
+					<SolidColorBrush Color="{DynamicResource ButtonBorderLeftColor}"/>
+				</Button.BorderBrush>
+				<AccessText Text="{x:Static s:Resources.runEmergency}" />
+			</Button>
 		</Grid>
+		<Button x:Name="btnLogin" Content="Login" Grid.Column="1" HorizontalAlignment="Left" Margin="10,88,0,0" VerticalAlignment="Top" Width="75" Click="btnLogin_Click" Background="{DynamicResource ButtonBackgroundColor}" BorderThickness="10,0,0,0" Padding="5">
+			<Button.BorderBrush>
+				<SolidColorBrush Color="{DynamicResource ButtonBorderLeftColor}"/>
+			</Button.BorderBrush>
+		</Button>
 		<!--/ End Right lower -->
 	</Grid>
 

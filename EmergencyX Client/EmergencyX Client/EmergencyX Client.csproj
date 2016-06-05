@@ -52,8 +52,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>256px.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -202,9 +201,16 @@
     <Compile Include="EmergencyExplorerService.cs" />
     <Compile Include="EmergencyExplorerServiceGrpc.cs" />
     <Compile Include="Login.cs" />
+    <Compile Include="LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
+    <Page Include="LoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -250,6 +256,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <Resource Include="Properties\emergency5 2016-05-23 23-43-18-19.jpg" />
+    <Resource Include="256px.ico" />
+    <Resource Include="Properties\emergency5 2016-05-23 23-43-41-99.jpg" />
     <Content Include="Properties\IMPOS50_.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

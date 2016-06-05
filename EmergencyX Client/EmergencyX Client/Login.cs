@@ -16,47 +16,85 @@ namespace EmergencyX_Client
 	public class Login
 	{
 
-		public void Test()
+		public async void FullLogin(string username, string password, bool remember)
 		{
-			//Some ping debug test stuff
-			//
-			Ping testPing = new Ping();
-						
-			string dataBuffer = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-			byte[] buffer = Encoding.ASCII.GetBytes(dataBuffer);
-			int timeout = 10000;
-
-			PingReply ereg = testPing.Send("beta.emergencyx.de", timeout, buffer); 
-
-			if(ereg.Status == IPStatus.Success)
-			{
-				MessageBox.Show("Success");
-			}
-			else
-			{
-				MessageBox.Show(ereg.Status.ToString());
-			}
-			//
-			// end debug test stuff
-
+			
 			// SSL Crt (should been placed in Solution Dir with Build Option Copy always)
 			//
 			SslCredentials cred = new SslCredentials(File.ReadAllText("server.crt"));
 			
 			// new Channel and then a new client based on that Channel
 			//
-			var connectionChannel = new Channel("beta.emergencyx.de:50051/EmergencyExplorerService", cred);
+			var connectionChannel = new Channel("beta.emergencyx.de:50051", cred);
 			var emx = EmergencyExplorerService.NewClient(connectionChannel);
 
 			// For testing only hardcoded login informations
 			//
-			LoginRequest request = new LoginRequest { Username = "", Password = "", RememberMe = true };
-			LoginResponse response = emx.Login(request);
+			LoginRequest request = new LoginRequest { Username = "ciajoe", Password = "fu", RememberMe = remember };
+			LoginResponse response = await emx.LoginAsync(request);
 
+			//Save the responded date to re-login the user every program session until he logs out
+			//
+			AppConfig.writeToAppConfig("rememberMe",remember.ToString());
+			AppConfig.writeToAppConfig("userId", response.UserId.ToString());
+			AppConfig.writeToAppConfig("token", response.Token); 
 
 			//All done
 			//
 			connectionChannel.ShutdownAsync().Wait();
+
+			if(response.Success != true)
+			{
+				throw new NotSuccessFullLoggedInException();
+			}
+			
+		}
+
+		public async void TokenLogin()
+		{
+			// SSL Crt (should been placed in Solution Dir with Build Option Copy always)
+			//
+			SslCredentials cred = new SslCredentials(File.ReadAllText("server.crt"));
+
+			// new Channel and then a new client based on that Channel
+			//
+			var connectionChannel = new Channel("beta.emergencyx.de:50051", cred);
+			var emx = EmergencyExplorerService.NewClient(connectionChannel);
+
+			LoginWithTokenRequest request = new LoginWithTokenRequest { UserId = Convert.ToUInt32(AppConfig.readFromAppConfig("userId")), Token = AppConfig.readFromAppConfig("token") };
+			LoginResponse response = await emx.LoginWithTokenAsync(request);
+			MessageBox.Show(response.Success + " | " + response.UserId + " | " + response.Token);
+
+
+			connectionChannel.ShutdownAsync().Wait();
+
+			if(response.Success != true)
+			{
+				throw new NotSuccessFullLoggedInException();
+			}
+
+		}
+	}
+
+	/// <summary>
+	/// Basic Exception to check wheater login was successfull or not
+	/// </summary>
+	public class NotSuccessFullLoggedInException : Exception
+	{
+		public NotSuccessFullLoggedInException()
+		{
+
+		}
+		
+		public NotSuccessFullLoggedInException(string message)
+			: base(message)
+		{
+
+		}
+
+		public NotSuccessFullLoggedInException(string message,Exception inner)
+			: base (message, inner)
+		{
 
 		}
 	}

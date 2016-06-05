@@ -200,9 +200,6 @@
     <value>_Aktivieren bzw. deaktiveren der selektierten Modifikation</value>
     <comment>Text Ressource for "enable or disable Context MenuItem"</comment>
   </data>
-  <data name="test" xml:space="preserve">
-    <value>test</value>
-  </data>
   <data name="prefixEnabled" xml:space="preserve">
     <value>Aktiv: </value>
   </data>
@@ -212,7 +209,19 @@
   <data name="prefixOrderingIndex" xml:space="preserve">
     <value>Ladeposition: </value>
   </data>
-  <data name="String1" xml:space="preserve">
-    <value />
+  <data name="loginFailed" xml:space="preserve">
+    <value>Login fehlgeschlagen!</value>
+  </data>
+  <data name="successFullLoggedIn" xml:space="preserve">
+    <value>Erfolgreich eingeloggt!</value>
+  </data>
+  <data name="runEmergency" xml:space="preserve">
+    <value>_Emergency starten</value>
+  </data>
+  <data name="password" xml:space="preserve">
+    <value>Passwort</value>
+  </data>
+  <data name="username" xml:space="preserve">
+    <value>Benutzername</value>
   </data>
 </root>

@@ -214,6 +214,24 @@ namespace EmergencyX_Client.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Login failed! ähnelt.
+        /// </summary>
+        public static string loginFailed {
+            get {
+                return ResourceManager.GetString("loginFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Password ähnelt.
+        /// </summary>
+        public static string password {
+            get {
+                return ResourceManager.GetString("password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Activ:  ähnelt.
         /// </summary>
         public static string prefixEnabled {
@@ -237,6 +255,15 @@ namespace EmergencyX_Client.Properties {
         public static string prefixOrderingIndex {
             get {
                 return ResourceManager.GetString("prefixOrderingIndex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die _Run Emergency ähnelt.
+        /// </summary>
+        public static string runEmergency {
+            get {
+                return ResourceManager.GetString("runEmergency", resourceCulture);
             }
         }
         
@@ -331,11 +358,20 @@ namespace EmergencyX_Client.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die test ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Login successfull! ähnelt.
         /// </summary>
-        public static string test {
+        public static string successFullLoggedIn {
             get {
-                return ResourceManager.GetString("test", resourceCulture);
+                return ResourceManager.GetString("successFullLoggedIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Username ähnelt.
+        /// </summary>
+        public static string username {
+            get {
+                return ResourceManager.GetString("username", resourceCulture);
             }
         }
     }

@@ -200,8 +200,8 @@
     <value>_Change load order </value>
     <comment>Text Ressource for "change orderingIndexContext MenuItem"</comment>
   </data>
-  <data name="test" xml:space="preserve">
-    <value>test</value>
+  <data name="successFullLoggedIn" xml:space="preserve">
+    <value>Login successfull!</value>
   </data>
   <data name="prefixEnabled" xml:space="preserve">
     <value>Activ: </value>
@@ -211,5 +211,17 @@
   </data>
   <data name="prefixOrderingIndex" xml:space="preserve">
     <value>Ordering Index:  </value>
+  </data>
+  <data name="loginFailed" xml:space="preserve">
+    <value>Login failed!</value>
+  </data>
+  <data name="runEmergency" xml:space="preserve">
+    <value>_Run Emergency</value>
+  </data>
+  <data name="password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="username" xml:space="preserve">
+    <value>Username</value>
   </data>
 </root>

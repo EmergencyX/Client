@@ -32,13 +32,44 @@ namespace EmergencyX_Client
 
 		public MainWindow()
 		{
+			// default Initialization Stuff
+			//
 			InitializeComponent();
+			
+			// Define path to Appdata located mods setting file and create a new instance of ModTools with it
+			//
 			this.appDataModificationsJsonFile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Promotion Software GmbH\EMERGENCY 5\mods\mods_user_settings.json";
 			this.mainWindowModTools = new ModTools(this.appDataModificationsJsonFile);
+			
+			//Define mod folder path
+			//
 			this.modificationsDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Promotion Software GmbH\EMERGENCY 5\mods";
+			
+			// check wheater emergency is installed or not and display the mod list or not and set data context to this window
+			//
 			updateSpecificWindowData();
 			this.DataContext = this;
+			
+			//hidde success textbox
+			//
 			txbSuccessfullSaved.Visibility = Visibility.Hidden;
+
+			//check weather user is logged in or not
+			//
+			if(AppConfig.readFromAppConfig("rememberMe").Equals("True"))
+			{	
+				try { 
+					Login login = new Login();
+					login.TokenLogin();
+					txbSuccessfullSaved.Text = Properties.Resources.successFullLoggedIn;
+					txbSuccessfullSaved.Visibility = Visibility.Visible;
+
+				} catch (NotSuccessFullLoggedInException noe)
+				{
+					MessageBox.Show(Properties.Resources.loginFailed, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				}
+				
+			}
 		}
 
 		//some functions in here work better if Loaded Event is used..Dont know why...
@@ -105,13 +136,6 @@ namespace EmergencyX_Client
 			emergencyXSettings.Show();
 		}
 
-		private void btnLogin_Click(object sender, RoutedEventArgs e)
-		{
-			
-			Login loginHandler = new Login();
-			loginHandler.Test();
-		}
-
 		private void btnChangeOrderingIndex_Click(object sender, RoutedEventArgs e)
 		{
 
@@ -126,6 +150,26 @@ namespace EmergencyX_Client
 				txbSuccessfullSaved.Text = Properties.Resources.changesSuccessfullSaved;
 				txbSuccessfullSaved.Visibility = Visibility.Visible;
 			}
+		}
+
+		private void btn_RunEmergency_Click(object sender, RoutedEventArgs e)
+		{
+
+			EmergencyInstallation myEmergencyInstallation = new EmergencyInstallation();
+
+			try { 
+				
+				System.Diagnostics.Process.Start(myEmergencyInstallation.getEmergencyInstallationPath() + @"\bin\em5_launcher.exe");
+			} catch (Exception ex)
+			{
+				MessageBox.Show(ex.Message,"Error",MessageBoxButton.OK,MessageBoxImage.Error);
+			}
+		}
+
+		private void btnLogin_Click(object sender, RoutedEventArgs e)
+		{
+			LoginWindow loginWindow = new LoginWindow();
+			loginWindow.Show();
 		}
 
 		#endregion ClickEvents
