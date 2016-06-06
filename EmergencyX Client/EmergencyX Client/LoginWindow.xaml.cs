@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using EmergencyX_Client;
 
 namespace EmergencyX_Client
 {
@@ -22,6 +23,12 @@ namespace EmergencyX_Client
 		public LoginWindow()
 		{
 			InitializeComponent();
+		}
+
+		private void btnLogin_Click(object sender, RoutedEventArgs e)
+		{
+			Login.FullLogin(txbUsername.Text,txbPassword.Password,cbxRememberMe.IsChecked.Value);
+			this.Close();
 		}
 	}
 }

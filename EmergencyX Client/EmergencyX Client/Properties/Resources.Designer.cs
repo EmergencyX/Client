@@ -214,6 +214,15 @@ namespace EmergencyX_Client.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Login ähnelt.
+        /// </summary>
+        public static string login {
+            get {
+                return ResourceManager.GetString("login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Login failed! ähnelt.
         /// </summary>
         public static string loginFailed {
@@ -255,6 +264,15 @@ namespace EmergencyX_Client.Properties {
         public static string prefixOrderingIndex {
             get {
                 return ResourceManager.GetString("prefixOrderingIndex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Remain signed in ähnelt.
+        /// </summary>
+        public static string rememberMe {
+            get {
+                return ResourceManager.GetString("rememberMe", resourceCulture);
             }
         }
         

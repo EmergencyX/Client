@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,10 +14,14 @@ using EmergencyXService;
 
 namespace EmergencyX_Client
 {
-	public class Login
+	public class Login : INotifyPropertyChanged
 	{
+		
+		//implement Property Event
+		//
+		public event PropertyChangedEventHandler PropertyChanged;
 
-		public async void FullLogin(string username, string password, bool remember)
+		public static async void FullLogin(string username, string password, bool remember)
 		{
 			
 			// SSL Crt (should been placed in Solution Dir with Build Option Copy always)
@@ -30,7 +35,7 @@ namespace EmergencyX_Client
 
 			// For testing only hardcoded login informations
 			//
-			LoginRequest request = new LoginRequest { Username = "ciajoe", Password = "fu", RememberMe = remember };
+			LoginRequest request = new LoginRequest { Username = username, Password = password, RememberMe = remember };
 			LoginResponse response = await emx.LoginAsync(request);
 
 			//Save the responded date to re-login the user every program session until he logs out
@@ -50,7 +55,7 @@ namespace EmergencyX_Client
 			
 		}
 
-		public async void TokenLogin()
+		public static async void TokenLogin()
 		{
 			// SSL Crt (should been placed in Solution Dir with Build Option Copy always)
 			//

@@ -59,8 +59,7 @@ namespace EmergencyX_Client
 			if(AppConfig.readFromAppConfig("rememberMe").Equals("True"))
 			{	
 				try { 
-					Login login = new Login();
-					login.TokenLogin();
+					Login.TokenLogin();
 					txbSuccessfullSaved.Text = Properties.Resources.successFullLoggedIn;
 					txbSuccessfullSaved.Visibility = Visibility.Visible;
 

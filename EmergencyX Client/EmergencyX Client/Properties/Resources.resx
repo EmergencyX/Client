@@ -224,4 +224,10 @@
   <data name="username" xml:space="preserve">
     <value>Username</value>
   </data>
+  <data name="login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="rememberMe" xml:space="preserve">
+    <value>Remain signed in</value>
+  </data>
 </root>
