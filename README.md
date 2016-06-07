@@ -8,3 +8,5 @@ It's also based on the grpc library from Google whiche can be found here https:/
 Json.NET (Newtonsoft.JSON) licensed under the MIT License and could be found here https://github.com/JamesNK/Newtonsoft.Json
 
 Protocoll Buffers is a data interchange format from Google https://github.com/google/protobuf
+
+This software includes also a WPF Version of the well known Font Awsome https://github.com/charri/Font-Awesome-WPF
