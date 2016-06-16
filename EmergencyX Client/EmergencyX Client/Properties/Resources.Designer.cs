@@ -106,6 +106,15 @@ namespace EmergencyX_Client.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Change ordering index ähnelt.
+        /// </summary>
+        public static string changeOrderingIndexDialogeTitle {
+            get {
+                return ResourceManager.GetString("changeOrderingIndexDialogeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Changes successfully saved. ähnelt.
         /// </summary>
         public static string changesSuccessfullSaved {
@@ -228,6 +237,15 @@ namespace EmergencyX_Client.Properties {
         public static string loginFailed {
             get {
                 return ResourceManager.GetString("loginFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die You are not logged in! ähnelt.
+        /// </summary>
+        public static string notLoggedIn {
+            get {
+                return ResourceManager.GetString("notLoggedIn", resourceCulture);
             }
         }
         

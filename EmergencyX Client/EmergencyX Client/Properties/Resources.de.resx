@@ -230,4 +230,10 @@
   <data name="rememberMe" xml:space="preserve">
     <value>Angemeldet bleiben</value>
   </data>
+  <data name="notLoggedIn" xml:space="preserve">
+    <value>Nicht angemeldet!</value>
+  </data>
+  <data name="changeOrderingIndexDialogeTitle" xml:space="preserve">
+    <value>Ladereihenfolge ändern</value>
+  </data>
 </root>

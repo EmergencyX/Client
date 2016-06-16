@@ -198,12 +198,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AppConfig.cs" />
+    <Compile Include="DataPool.cs" />
     <Compile Include="EmergencyExplorerService.cs" />
     <Compile Include="EmergencyExplorerServiceGrpc.cs" />
     <Compile Include="Login.cs" />
     <Compile Include="LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NotSuccesFullLoggedInException.cs" />
     <Compile Include="Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>

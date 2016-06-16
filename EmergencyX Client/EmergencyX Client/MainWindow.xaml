@@ -8,7 +8,7 @@
 	xmlns:fa="http://schemas.fontawesome.io/icons/"
 	xmlns:em5="clr-namespace:EmergencyX.Emergency5.Modifications;assembly=EmergencyX.Emergency5.Modifications"
         mc:Ignorable="d"
-        Title="{x:Static s:Resources.appTitle}" SizeToContent="WidthAndHeight" MinWidth="1176" MinHeight="664" IsVisibleChanged="MainWindowIsVisibleChanged" ResizeMode="CanMinimize" Icon="256px.ico" >
+        Title="{x:Static s:Resources.appTitle}" SizeToContent="WidthAndHeight" MinWidth="1176" MinHeight="664" ResizeMode="CanMinimize" Icon="256px.ico" Closing="MainWindow_Closing" >
 	<!-- Color stuff down here -->
 	<Window.Resources>
 		<!--Style Stuff-->
@@ -38,6 +38,9 @@
 			<GradientStop Color="#FFFB7644" Offset="1"/>
 		</RadialGradientBrush>
 	</Window.Resources>
+	<Window.DataContext>
+		<local:DataPool />
+	</Window.DataContext>
 	<!--Content beginning-->
 
 	<Grid>
@@ -64,8 +67,9 @@
 					Color="Black"
 					Opacity="0.9"
 					BlurRadius="4" />
-				</TextBlock.Effect>		
+				</TextBlock.Effect>
 			</TextBlock>
+			<Label x:Name="lblEmergencyNotInstalled" Content="{x:Static s:Resources.emergencyIsNotInstalled}" HorizontalAlignment="Left" Margin="507,53,0,0" VerticalAlignment="Top" Foreground="Red" FontSize="26.667" FontWeight="Bold"/>
 		</Grid>
 
 		<!--Left Lower-->
@@ -77,8 +81,21 @@
 			</Grid.RowDefinitions>
 
 			<!-- Left Inner Upper -->
-			<Grid Grid.Row="0" Height="400">
-				<ListBox x:Name="liModificationList" ItemsSource="{Binding InstalledMods}" Background="Black" Margin="10,0,0,10" BorderThickness="0" ScrollViewer.VerticalScrollBarVisibility="Visible" Opacity="0.7" />
+			<Grid Grid.Row="0" Height="400" Margin="0,18,0,19">
+				<ListBox PreviewMouseMove="liModificationList_PreviewMouseMove" 
+					Drop="liModificationList_Drop"  
+					x:Name="liModificationList" 
+					ItemsSource="{Binding InstalledMods}" Background="Black" Margin="10,0,0,10" BorderThickness="0" ScrollViewer.VerticalScrollBarVisibility="Visible" Opacity="0.7" AllowDrop="True" >
+					<ListBox.ItemContainerStyle>
+						<Style TargetType="ListViewItem">
+							<Style.Triggers>
+								<Trigger Property="IsKeyboardFocusWithin" Value="true">
+									<Setter Property="IsSelected" Value="true" />
+								</Trigger>
+							</Style.Triggers>
+						</Style>
+					</ListBox.ItemContainerStyle>
+				</ListBox>
 			</Grid>
 			<!--/ End Left inner Upper-->
 
@@ -145,6 +162,15 @@
 				<SolidColorBrush Color="{DynamicResource ButtonBorderLeftColor}"/>
 			</Button.BorderBrush>
 		</Button>
+		<!--Logout buttin is only visible if you are logged in-->
+		<Button x:Name="btnLogout" Content="Logout" Grid.Column="1" HorizontalAlignment="Left" Margin="10,88,0,0" VerticalAlignment="Top" Width="75" Background="{DynamicResource ButtonBackgroundColor}" BorderThickness="10,0,0,0" Padding="5" Click="btnLogout_Click" Visibility="Hidden">
+			<Button.BorderBrush>
+				<SolidColorBrush Color="{DynamicResource ButtonBorderLeftColor}"/>
+			</Button.BorderBrush>
+		</Button>
+		<!-- not visible because it has a binding which is empty at the beginning, placed in the upper rigght corner -->
+		<TextBlock x:Name="txbUsername" Text="{Binding Login.UserName}" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="133" Foreground="{DynamicResource ButtonBackgroundColor}"/>
+
 		<!--/ End Right lower -->
 	</Grid>
 

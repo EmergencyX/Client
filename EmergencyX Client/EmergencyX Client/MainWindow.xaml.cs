@@ -25,43 +25,57 @@ namespace EmergencyX_Client
 	public partial class MainWindow : Window
 	{
 
-		public SortableObservableCollection<InstalledMod> InstalledMods { get; set; }
-		public string appDataModificationsJsonFile { get; set; }
-		public ModTools mainWindowModTools { get; set; }
-		public string modificationsDir { get; set; }
+		DataPool dataContext 
+		{
+			get { return DataContext as DataPool; }
+		}
 
+		#region constructor
+		//constructor
+		//
 		public MainWindow()
 		{
 			// default Initialization Stuff
 			//
 			InitializeComponent();
-			
-			// Define path to Appdata located mods setting file and create a new instance of ModTools with it
+			DataContext = new DataPool();
+
+			// start datacontext
 			//
-			this.appDataModificationsJsonFile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Promotion Software GmbH\EMERGENCY 5\mods\mods_user_settings.json";
-			this.mainWindowModTools = new ModTools(this.appDataModificationsJsonFile);
-			
-			//Define mod folder path
+			dataContext.ModTools = new ModTools(dataContext.AppDataModificationsJsonFile);
+			dataContext.EmergencyInstallation = new EmergencyInstallation();
+			dataContext.Login = new Login();
+			dataContext.InstalledMods = dataContext.ModTools.getInstalledModifications();
+			dataContext.MainWindow = this;
+
+			//initial value for username
 			//
-			this.modificationsDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Promotion Software GmbH\EMERGENCY 5\mods";
-			
-			// check wheater emergency is installed or not and display the mod list or not and set data context to this window
-			//
-			updateSpecificWindowData();
-			this.DataContext = this;
-			
+			if (AppConfig.readFromAppConfig("username") != "")
+				dataContext.Login.UserName = AppConfig.readFromAppConfig("username");
+			else
+				dataContext.Login.UserName = Properties.Resources.notLoggedIn;
+
 			//hidde success textbox
 			//
 			txbSuccessfullSaved.Visibility = Visibility.Hidden;
+
+			// check if emergency is installed, if not disable the mod-box (well... because of this datacontext it looks not that nice...
+			//
+			if (EmergencyInstallation.getIsEmergencyInstalled() && dataContext.EmergencyInstallation.verifyEmergencyInstallation(dataContext.EmergencyInstallation.getEmergencyInstallationPath()))
+				lblEmergencyNotInstalled.Visibility = Visibility.Hidden;
+			else
+				liModificationList.Visibility = Visibility.Hidden;
 
 			//check weather user is logged in or not
 			//
 			if(AppConfig.readFromAppConfig("rememberMe").Equals("True"))
 			{	
 				try { 
-					Login.TokenLogin();
+					dataContext.Login.TokenLogin();
 					txbSuccessfullSaved.Text = Properties.Resources.successFullLoggedIn;
 					txbSuccessfullSaved.Visibility = Visibility.Visible;
+					btnLogin.Visibility = Visibility.Hidden;
+					btnLogout.Visibility = Visibility.Visible;
 
 				} catch (NotSuccessFullLoggedInException noe)
 				{
@@ -69,50 +83,45 @@ namespace EmergencyX_Client
 				}
 				
 			}
+
+			#region DragAndDrop
+			Style itemContainerStyle = new Style(typeof(ListBoxItem));
+			itemContainerStyle.Setters.Add(new Setter(ListBoxItem.AllowDropProperty, true));
+			itemContainerStyle.Setters.Add(new EventSetter(ListBoxItem.PreviewMouseLeftButtonDownEvent, new MouseButtonEventHandler(liModificationList_PreviewMouseMove)));
+			itemContainerStyle.Setters.Add(new EventSetter(ListBoxItem.DropEvent, new DragEventHandler(liModificationList_Drop)));
+			liModificationList.ItemContainerStyle = itemContainerStyle;
+			liModificationList.Items.Refresh();
+			#endregion DragAndDrop
 		}
+		#endregion constructor
 
-		//some functions in here work better if Loaded Event is used..Dont know why...
-		private void mainWindowLoaded(object sender, RoutedEventArgs e)
-		{
-			updateSpecificWindowData();
-			//statusInformation.Visibility = Visibility.Hidden;
-			//successIcon.Visibility = Visibility.Hidden;
-		}
+		//#region updateSpecificWindowData
+		//public void updateSpecificWindowData()
+		//{
+		//	//Read Text from description in AssemblyInfo.cs and display it while app is running
+		//	//Version.Text = ((System.Reflection.AssemblyDescriptionAttribute)System.Reflection.Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(System.Reflection.AssemblyDescriptionAttribute), false)[0]).Description;
 
-		private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
+		//	//if Emergency 5 is installed and no mods are installed the text "Emergency is installed" should be displayed
+		//	//if its insatlled and there are mods the mods should be displayed 
+		//	//otherwise there should be the text "Emergency is not installed"
+		//	//
 
-		}
+		//	//holds the full path to appdata mod 
 
-		#region updateSpecificWindowData
-		public void updateSpecificWindowData()
-		{
-			//Read Text from description in AssemblyInfo.cs and display it while app is running
-			//Version.Text = ((System.Reflection.AssemblyDescriptionAttribute)System.Reflection.Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(System.Reflection.AssemblyDescriptionAttribute), false)[0]).Description;
+		//	//if somewhere (somehow) an emergency installation is found and this installation could been verified
+		//	if (EmergencyInstallation.getIsEmergencyInstalled() && myEmergencyInstallation.verifyEmergencyInstallation(myEmergencyInstallation.getEmergencyInstallationPath()))
+		//	{
+		//		this.InstalledMods = mainWindowModTools.getInstalledModifications();
 
-			//if Emergency 5 is installed and no mods are installed the text "Emergency is installed" should be displayed
-			//if its insatlled and there are mods the mods should be displayed 
-			//otherwise there should be the text "Emergency is not installed"
-			//
+		//	}
+		//	else
+		//	{
+		//		// if not display the text "Emergency is not installed" and dis able the list
+		//		//lblIsEmergencyInstalled.Content = Properties.Resources.emergencyIsNotInstalled;
 
-			EmergencyInstallation myEmergencyInstallation = new EmergencyInstallation();
-
-			//holds the full path to appdata mod 
-
-			//if somewhere (somehow) an emergency installation is found and this installation could been verified
-			if (EmergencyInstallation.getIsEmergencyInstalled() && myEmergencyInstallation.verifyEmergencyInstallation(myEmergencyInstallation.getEmergencyInstallationPath()))
-			{
-				this.InstalledMods = mainWindowModTools.getInstalledModifications();
-
-			}
-			else
-			{
-				// if not display the text "Emergency is not installed" and dis able the list
-				//lblIsEmergencyInstalled.Content = Properties.Resources.emergencyIsNotInstalled;
-
-			}
-		}
-		#endregion updateSpecificWindowData
+		//	}
+		//}
+		//#endregion updateSpecificWindowData
 
 		private void ModListContainerMouseDown(object sender, MouseButtonEventArgs e)
 		{
@@ -126,6 +135,46 @@ namespace EmergencyX_Client
 			}
 		}
 
+		// Drags items
+		//
+		private void liModificationList_PreviewMouseMove(object sender, MouseEventArgs e)
+		{
+			if (sender is ListBoxItem && e.LeftButton == MouseButtonState.Pressed)
+			{
+				ListBoxItem draggedItem = sender as ListBoxItem;
+				DragDrop.DoDragDrop(draggedItem, draggedItem.DataContext, DragDropEffects.Move);
+				draggedItem.IsSelected = true;
+			}
+		}
+		// Handels drop stuff
+		//
+		public void liModificationList_Drop(object sender, DragEventArgs e)
+		{
+			if(sender is ListBoxItem) { 
+				InstalledMod droppedData = e.Data.GetData(typeof(InstalledMod)) as InstalledMod;
+				InstalledMod targetItem = ((ListBoxItem)(sender)).DataContext as InstalledMod;
+			
+				int removedIdX = liModificationList.Items.IndexOf(droppedData);
+				int targetIdX = liModificationList.Items.IndexOf(targetItem);
+
+				if(removedIdX < targetIdX)
+				{
+					dataContext.InstalledMods.Insert(targetIdX + 1, droppedData);
+					dataContext.InstalledMods.RemoveAt(removedIdX);
+
+				} 
+				else 
+				{
+					int remIdX = removedIdX + 1;
+					if(dataContext.InstalledMods.Count + 1 > remIdX)
+					{
+						dataContext.InstalledMods.Insert(targetIdX, droppedData);
+						dataContext.InstalledMods.RemoveAt(remIdX);
+					}
+				}
+			}
+			liModificationList.Items.Refresh();
+		}
 
 		#region ClickEvents
 
@@ -142,9 +191,9 @@ namespace EmergencyX_Client
 
 		private void btnAcivated_Click(object sender, RoutedEventArgs e)
 		{
-			ModTools.modifyModActivityState(liModificationList.SelectedIndex, InstalledMods);
+			ModTools.modifyModActivityState(liModificationList.SelectedIndex, dataContext.InstalledMods);
 
-			if (ModTools.writeJsonModFile(InstalledMods, appDataModificationsJsonFile))
+			if (ModTools.writeJsonModFile(dataContext.InstalledMods, dataContext.AppDataModificationsJsonFile))
 			{
 				txbSuccessfullSaved.Text = Properties.Resources.changesSuccessfullSaved;
 				txbSuccessfullSaved.Visibility = Visibility.Visible;
@@ -168,15 +217,22 @@ namespace EmergencyX_Client
 		private void btnLogin_Click(object sender, RoutedEventArgs e)
 		{
 			LoginWindow loginWindow = new LoginWindow();
+			loginWindow.DataContext = DataContext;
 			loginWindow.Show();
+		}
+
+		private void btnLogout_Click(object sender, RoutedEventArgs e)
+		{
+
 		}
 
 		#endregion ClickEvents
 
-		public void MainWindowIsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+		// Close the whole application if mainwindow is closed
+		//
+		private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
 		{
-			updateSpecificWindowData();
+			App.Current.Shutdown();
 		}
-
 	}
 }

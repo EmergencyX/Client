@@ -8,22 +8,78 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Net.NetworkInformation;
 using System.Net;
+using System.Runtime.CompilerServices;
 using Grpc.Core;
-using Grpc.Core.Logging;
 using EmergencyXService;
 
 namespace EmergencyX_Client
 {
+
 	public class Login : INotifyPropertyChanged
 	{
-		
+
+
 		//implement Property Event
 		//
 		public event PropertyChangedEventHandler PropertyChanged;
 
-		public static async void FullLogin(string username, string password, bool remember)
+		// static member stuff
+		//
+		private int userId;
+		private string token;
+		private string userName;
+
+		// Property Stuff...
+		//
+		public string Token
 		{
-			
+			get
+			{
+				return token;
+			}
+
+			set
+			{
+				token = value;
+				NotifyPropertyChanged();
+			}
+		}
+		public int UserId
+		{
+			get
+			{
+				return userId;
+			}
+
+			set
+			{
+				userId = value;
+				NotifyPropertyChanged();
+			}
+		}
+		public string UserName
+		{
+			get
+			{
+				return userName;
+			}
+
+			set
+			{
+				userName = value;
+				NotifyPropertyChanged();
+			}
+		}
+
+
+		/// <summary>
+		/// Logs the user with the given data in
+		/// </summary>
+		/// <param name="username">User provided username</param>
+		/// <param name="password">User's password</param>
+		/// <param name="remember">Remain logged in or not</param>
+		public async void FullLogin(string username, string password, bool remember)
+		{
 			// SSL Crt (should been placed in Solution Dir with Build Option Copy always)
 			//
 			SslCredentials cred = new SslCredentials(File.ReadAllText("server.crt"));
@@ -42,12 +98,12 @@ namespace EmergencyX_Client
 			//
 			AppConfig.writeToAppConfig("rememberMe",remember.ToString());
 			AppConfig.writeToAppConfig("userId", response.UserId.ToString());
-			AppConfig.writeToAppConfig("token", response.Token); 
+			AppConfig.writeToAppConfig("token", response.Token);
+			AppConfig.writeToAppConfig("username", request.Username);
 
 			//All done
 			//
 			connectionChannel.ShutdownAsync().Wait();
-
 			if(response.Success != true)
 			{
 				throw new NotSuccessFullLoggedInException();
@@ -55,7 +111,10 @@ namespace EmergencyX_Client
 			
 		}
 
-		public static async void TokenLogin()
+		/// <summary>
+		/// Logs the user asyncrouns in. No parmaeter needed because the needed data is stored in app.config
+		/// </summary>
+		public async void TokenLogin()
 		{
 			// SSL Crt (should been placed in Solution Dir with Build Option Copy always)
 			//
@@ -68,8 +127,6 @@ namespace EmergencyX_Client
 
 			LoginWithTokenRequest request = new LoginWithTokenRequest { UserId = Convert.ToUInt32(AppConfig.readFromAppConfig("userId")), Token = AppConfig.readFromAppConfig("token") };
 			LoginResponse response = await emx.LoginWithTokenAsync(request);
-			MessageBox.Show(response.Success + " | " + response.UserId + " | " + response.Token);
-
 
 			connectionChannel.ShutdownAsync().Wait();
 
@@ -79,28 +136,16 @@ namespace EmergencyX_Client
 			}
 
 		}
-	}
 
-	/// <summary>
-	/// Basic Exception to check wheater login was successfull or not
-	/// </summary>
-	public class NotSuccessFullLoggedInException : Exception
-	{
-		public NotSuccessFullLoggedInException()
+
+		// Implement NotifyPropertyChanged
+		//
+		public void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
 		{
-
-		}
-		
-		public NotSuccessFullLoggedInException(string message)
-			: base(message)
-		{
-
-		}
-
-		public NotSuccessFullLoggedInException(string message,Exception inner)
-			: base (message, inner)
-		{
-
+			if (PropertyChanged != null)
+			{
+				PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

@@ -20,6 +20,10 @@ namespace EmergencyX_Client
 	/// </summary>
 	public partial class LoginWindow : Window
 	{
+		DataPool dataContext {
+			get { return DataContext as DataPool; }
+		}
+		
 		public LoginWindow()
 		{
 			InitializeComponent();
@@ -27,7 +31,7 @@ namespace EmergencyX_Client
 
 		private void btnLogin_Click(object sender, RoutedEventArgs e)
 		{
-			Login.FullLogin(txbUsername.Text,txbPassword.Password,cbxRememberMe.IsChecked.Value);
+			dataContext.loginWithUsernameUpdate(txbUsername.Text, txbPassword.Password, cbxRememberMe.IsChecked.Value);
 			this.Close();
 		}
 	}
