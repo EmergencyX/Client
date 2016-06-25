@@ -68,30 +68,23 @@ namespace EmergencyX_Client
 
 			//check weather user is logged in or not
 			//
-			if(AppConfig.readFromAppConfig("rememberMe").Equals("True"))
-			{	
-				try { 
+			if (AppConfig.readFromAppConfig("rememberMe").Equals("True"))
+			{
+				try
+				{
 					dataContext.Login.TokenLogin();
 					txbSuccessfullSaved.Text = Properties.Resources.successFullLoggedIn;
 					txbSuccessfullSaved.Visibility = Visibility.Visible;
 					btnLogin.Visibility = Visibility.Hidden;
 					btnLogout.Visibility = Visibility.Visible;
 
-				} catch (NotSuccessFullLoggedInException noe)
+				}
+				catch (NotSuccessFullLoggedInException noe)
 				{
 					MessageBox.Show(Properties.Resources.loginFailed, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 				}
-				
-			}
 
-			#region DragAndDrop
-			Style itemContainerStyle = new Style(typeof(ListBoxItem));
-			itemContainerStyle.Setters.Add(new Setter(ListBoxItem.AllowDropProperty, true));
-			itemContainerStyle.Setters.Add(new EventSetter(ListBoxItem.PreviewMouseLeftButtonDownEvent, new MouseButtonEventHandler(liModificationList_PreviewMouseMove)));
-			itemContainerStyle.Setters.Add(new EventSetter(ListBoxItem.DropEvent, new DragEventHandler(liModificationList_Drop)));
-			liModificationList.ItemContainerStyle = itemContainerStyle;
-			liModificationList.Items.Refresh();
-			#endregion DragAndDrop
+			}
 		}
 		#endregion constructor
 
@@ -135,57 +128,68 @@ namespace EmergencyX_Client
 			}
 		}
 
-		// Drags items
-		//
-		private void liModificationList_PreviewMouseMove(object sender, MouseEventArgs e)
-		{
-			if (sender is ListBoxItem && e.LeftButton == MouseButtonState.Pressed)
-			{
-				ListBoxItem draggedItem = sender as ListBoxItem;
-				DragDrop.DoDragDrop(draggedItem, draggedItem.DataContext, DragDropEffects.Move);
-				draggedItem.IsSelected = true;
-			}
-		}
-		// Handels drop stuff
-		//
-		public void liModificationList_Drop(object sender, DragEventArgs e)
-		{
-			if(sender is ListBoxItem) { 
-				InstalledMod droppedData = e.Data.GetData(typeof(InstalledMod)) as InstalledMod;
-				InstalledMod targetItem = ((ListBoxItem)(sender)).DataContext as InstalledMod;
-			
-				int removedIdX = liModificationList.Items.IndexOf(droppedData);
-				int targetIdX = liModificationList.Items.IndexOf(targetItem);
-
-				if(removedIdX < targetIdX)
-				{
-					dataContext.InstalledMods.Insert(targetIdX + 1, droppedData);
-					dataContext.InstalledMods.RemoveAt(removedIdX);
-
-				} 
-				else 
-				{
-					int remIdX = removedIdX + 1;
-					if(dataContext.InstalledMods.Count + 1 > remIdX)
-					{
-						dataContext.InstalledMods.Insert(targetIdX, droppedData);
-						dataContext.InstalledMods.RemoveAt(remIdX);
-					}
-				}
-			}
-			liModificationList.Items.Refresh();
-		}
-
 		#region ClickEvents
 
+		/// <summary>
+		/// Opens the settings
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void btnSettings_Click(object sender, RoutedEventArgs e)
 		{
 			Settings emergencyXSettings = new Settings();
 			emergencyXSettings.Show();
 		}
 
-		private void btnChangeOrderingIndex_Click(object sender, RoutedEventArgs e)
+
+		/// <summary>
+		/// Handels clicks on the  up arrow
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void btnIncreaseOrderingIndex_Click(object sender, RoutedEventArgs e)
 		{
+			//  if nothing is selected
+			//
+			if (liModificationList.SelectedIndex == -1 | (liModificationList.SelectedIndex == dataContext.InstalledMods.Count - 1) )
+			{
+				MessageBox.Show("Übersetzung", Properties.Resources.changeOrderingIndexDialogeTitle, MessageBoxButton.OK, MessageBoxImage.Error);
+				return;
+			}
+
+			// store the number of the current selected item to send it into increasing and reselecting
+			// increase the ordering index and sort our collection to display the result with the increaseOrderingIndex method
+			//
+			int currentlySelected = liModificationList.SelectedIndex;
+			ModTools.increaseOrderingIndex(currentlySelected, dataContext.InstalledMods);
+
+			// also let it selcted
+			liModificationList.SelectedItem = liModificationList.Items[currentlySelected + 1];
+		}
+
+		/// <summary>
+		/// Handels the clicks on the down arrow
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void btnDecreaseOrderingIndex_Click(object sender, RoutedEventArgs e)
+		{
+			//  if nothing is selected
+			//
+			if (liModificationList.SelectedIndex == -1 | (liModificationList.SelectedIndex - 1 == -1))
+			{
+				MessageBox.Show("Übersetzung", Properties.Resources.changeOrderingIndexDialogeTitle, MessageBoxButton.OK, MessageBoxImage.Error);
+				return;
+			}
+
+			// store the number of the current selected item to send it into decreasing and reselecting
+			// decrease the ordering index and sort our collection to display the result withthe decreaseOrderingIndex method
+			//
+			int currentlySelected = liModificationList.SelectedIndex;
+			ModTools.decreaseOrderingIndex(currentlySelected, dataContext.InstalledMods);
+
+			// also let it selcted
+			liModificationList.SelectedItem = liModificationList.Items[currentlySelected - 1];
 
 		}
 
@@ -200,6 +204,11 @@ namespace EmergencyX_Client
 			}
 		}
 
+		/// <summary>
+		/// Runs Emergency 5
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void btn_RunEmergency_Click(object sender, RoutedEventArgs e)
 		{
 
@@ -214,6 +223,11 @@ namespace EmergencyX_Client
 			}
 		}
 
+		/// <summary>
+		/// Starts the login mechanics
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void btnLogin_Click(object sender, RoutedEventArgs e)
 		{
 			LoginWindow loginWindow = new LoginWindow();
@@ -221,6 +235,11 @@ namespace EmergencyX_Client
 			loginWindow.Show();
 		}
 
+		/// <summary>
+		/// Starts the logout proccess
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void btnLogout_Click(object sender, RoutedEventArgs e)
 		{
 
@@ -234,5 +253,6 @@ namespace EmergencyX_Client
 		{
 			App.Current.Shutdown();
 		}
+
 	}
 }

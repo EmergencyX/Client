@@ -21,7 +21,6 @@ namespace EmergencyX_Client
 	/// </summary>
 	public partial class Settings : Window
 	{
-
 		private string oldEmergencyPath { get; set; }
 
 		public Settings()

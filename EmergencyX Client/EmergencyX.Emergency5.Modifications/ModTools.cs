@@ -141,12 +141,48 @@ namespace EmergencyX.Emergency5.Modifications
 		/// <param name="modIndex"></param>
 		/// <param name="installed"></param>
 		/// <returns></returns>
-		public static bool changeOrderingIndex(int modIndex, string newIndex, SortableObservableCollection<InstalledMod> installed)
+		public static bool increaseOrderingIndex(int modIndex, SortableObservableCollection<InstalledMod> installed)
 		{
-			string helper;
-			helper = installed[modIndex].OrderingIndex;
-			installed.Where(e => e.OrderingIndex.Equals(newIndex)).FirstOrDefault().OrderingIndex = helper;
-			installed[modIndex].OrderingIndex = newIndex.ToString();
+			//only change somethint if not the last object was selected
+			//
+			if(modIndex == installed.Count - 1 )
+			{
+				return false;
+			}
+			
+			// store the name of the modifications which currently has the new ordering index (mod Index = Ordering Index
+			// because of calculation plus on and the list, the indexes and also the Collection counts from zero
+			//
+			string helperModName = installed.Where(e => e.OrderingIndex.Equals((modIndex + 1).ToString())).FirstOrDefault().ModificationName;
+
+			installed[modIndex].OrderingIndex = (modIndex + 1).ToString();
+			installed.Where(e => e.ModificationName.Equals(helperModName)).FirstOrDefault().OrderingIndex = modIndex.ToString();
+			installed.Sort(x => x.OrderingIndex, ListSortDirection.Ascending);
+			return true;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="modIndex"></param>
+		/// <param name="installed"></param>
+		/// <returns></returns>
+		public static bool decreaseOrderingIndex(int modIndex, SortableObservableCollection<InstalledMod> installed)
+		{
+			//only change somethint if not the last object was selected
+			//
+			if (modIndex - 1 == -1)
+			{
+				return false;
+			}
+
+			// store the name of the modifications which currently has the new ordering index (mod Index = Ordering Index
+			// because of calculation minus on and the list, the indexes and also the Collection counts from zero
+			//
+			string helperModName = installed.Where(e => e.OrderingIndex.Equals((modIndex - 1).ToString())).FirstOrDefault().ModificationName;
+
+			installed[modIndex].OrderingIndex = (modIndex - 1).ToString();
+			installed.Where(e => e.ModificationName.Equals(helperModName)).FirstOrDefault().OrderingIndex = modIndex.ToString();
 			installed.Sort(x => x.OrderingIndex, ListSortDirection.Ascending);
 			return true;
 		}

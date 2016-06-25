@@ -82,19 +82,9 @@
 
 			<!-- Left Inner Upper -->
 			<Grid Grid.Row="0" Height="400" Margin="0,18,0,19">
-				<ListBox PreviewMouseMove="liModificationList_PreviewMouseMove" 
-					Drop="liModificationList_Drop"  
-					x:Name="liModificationList" 
+				<ListBox x:Name="liModificationList" 
 					ItemsSource="{Binding InstalledMods}" Background="Black" Margin="10,0,0,10" BorderThickness="0" ScrollViewer.VerticalScrollBarVisibility="Visible" Opacity="0.7" AllowDrop="True" >
-					<ListBox.ItemContainerStyle>
-						<Style TargetType="ListViewItem">
-							<Style.Triggers>
-								<Trigger Property="IsKeyboardFocusWithin" Value="true">
-									<Setter Property="IsSelected" Value="true" />
-								</Trigger>
-							</Style.Triggers>
-						</Style>
-					</ListBox.ItemContainerStyle>
+					
 				</ListBox>
 			</Grid>
 			<!--/ End Left inner Upper-->
@@ -114,22 +104,27 @@
 
 				<!--Right inner buttom-->
 				<Grid Grid.Column="1">
-					<Menu Name="ModifcationMenuPanel" Width="530" Height="80">
+					<Menu Name="ModifcationMenuPanel" Width="530" Height="80" >
 
 						<Menu.Background>
 							<SolidColorBrush Color="#FFF0F0F0" Opacity="0"/>
 						</Menu.Background>
 
-						<Button x:Name="btnChangeOrderingIndex" Content="{x:Static s:Resources.c}" Height="76" Width="250" TabIndex="2" BorderThickness="10,0,0,0" TextOptions.TextFormattingMode="Display" Background="{DynamicResource ButtonBackgroundColor}" Click="btnChangeOrderingIndex_Click" >
-							<Button.BorderBrush>
-								<SolidColorBrush Color="{DynamicResource ButtonBorderLeftColor}"/>
-							</Button.BorderBrush>
-						</Button>
-						<Button x:Name="btnAcivated"  Height="74" Width="250" TabIndex="3" BorderThickness="10,0,0,0" TextOptions.TextFormattingMode="Display" Background="{DynamicResource ButtonBackgroundColor}" Click="btnAcivated_Click">
+						<Button HorizontalAlignment="Right" x:Name="btnAcivated"  Height="74" Width="250" TabIndex="3" BorderThickness="10,0,0,0" TextOptions.TextFormattingMode="Display" Background="{DynamicResource ButtonBackgroundColor}" Click="btnAcivated_Click">
 							<Button.BorderBrush>
 								<SolidColorBrush Color="{DynamicResource ButtonBorderLeftColor}"/>
 							</Button.BorderBrush>
 							<AccessText Text="{x:Static s:Resources.e}" TextWrapping="Wrap" TextAlignment="Center"/>
+						</Button>
+						<Button fa:Awesome.Content="ArrowDown" TextElement.FontFamily="pack://application:,,,/FontAwesome.WPF;component/#FontAwesome" x:Name="btnIncreaseOrderingIndex" Height="76" Width="60" TabIndex="2" BorderThickness="10,0,0,0" TextOptions.TextFormattingMode="Display" Background="{DynamicResource ButtonBackgroundColor}" Click="btnIncreaseOrderingIndex_Click" >
+							<Button.BorderBrush>
+								<SolidColorBrush Color="{DynamicResource ButtonBorderLeftColor}"/>
+							</Button.BorderBrush>
+						</Button>
+						<Button fa:Awesome.Content="ArrowUp" TextElement.FontFamily="pack://application:,,,/FontAwesome.WPF;component/#FontAwesome" x:Name="btnDecreaseOrderingIndex" Height="76" Width="60" TabIndex="2" BorderThickness="10,0,0,0" TextOptions.TextFormattingMode="Display" Background="{DynamicResource ButtonBackgroundColor}" Click="btnDecreaseOrderingIndex_Click" >
+							<Button.BorderBrush>
+								<SolidColorBrush Color="{DynamicResource ButtonBorderLeftColor}"/>
+							</Button.BorderBrush>
 						</Button>
 					</Menu>
 				</Grid>
@@ -157,7 +152,7 @@
 				<AccessText Text="{x:Static s:Resources.runEmergency}" />
 			</Button>
 		</Grid>
-		<Button x:Name="btnLogin" Content="Login" Grid.Column="1" HorizontalAlignment="Left" Margin="10,88,0,0" VerticalAlignment="Top" Width="75" Click="btnLogin_Click" Background="{DynamicResource ButtonBackgroundColor}" BorderThickness="10,0,0,0" Padding="5">
+		<Button x:Name="btnLogin" Content="Login" Grid.Column="1" HorizontalAlignment="Left" MinHeight="26" Margin="10,88,0,0" VerticalAlignment="Top"  Width="75" Click="btnLogin_Click" Background="{DynamicResource ButtonBackgroundColor}" BorderThickness="10,0,0,0" Padding="5">
 			<Button.BorderBrush>
 				<SolidColorBrush Color="{DynamicResource ButtonBorderLeftColor}"/>
 			</Button.BorderBrush>
