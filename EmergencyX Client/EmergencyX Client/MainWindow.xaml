@@ -13,6 +13,9 @@
 	<Window.Resources>
 		<!--Style Stuff-->
 		<SolidColorBrush x:Key="ButtonBackgroundColor" Color="White"/>
+		<Style TargetType="{x:Type Button}" >
+			<Setter Property="FontSize" Value="16" />
+		</Style>
 
 		<!--Templates-->
 		<DataTemplate DataType="{x:Type em5:InstalledMod}">
@@ -116,12 +119,12 @@
 							</Button.BorderBrush>
 							<AccessText Text="{x:Static s:Resources.e}" TextWrapping="Wrap" TextAlignment="Center"/>
 						</Button>
-						<Button fa:Awesome.Content="ArrowDown" TextElement.FontFamily="pack://application:,,,/FontAwesome.WPF;component/#FontAwesome" x:Name="btnIncreaseOrderingIndex" Height="76" Width="60" TabIndex="2" BorderThickness="10,0,0,0" TextOptions.TextFormattingMode="Display" Background="{DynamicResource ButtonBackgroundColor}" Click="btnIncreaseOrderingIndex_Click" >
+						<Button MouseLeave="btnIncreaseOrderingIndex_MouseLeave" MouseEnter="btnIncreaseOrderingIndex_MouseEnter" TextElement.FontSize="30" fa:Awesome.Content="ArrowDown" TextElement.FontFamily="pack://application:,,,/FontAwesome.WPF;component/#FontAwesome" x:Name="btnIncreaseOrderingIndex" Height="76" Width="60" TabIndex="2" BorderThickness="10,0,0,0" TextOptions.TextFormattingMode="Display" Background="{DynamicResource ButtonBackgroundColor}" Click="btnIncreaseOrderingIndex_Click" ToolTip="{x:Static s:Resources.loadLater}" >
 							<Button.BorderBrush>
 								<SolidColorBrush Color="{DynamicResource ButtonBorderLeftColor}"/>
 							</Button.BorderBrush>
 						</Button>
-						<Button fa:Awesome.Content="ArrowUp" TextElement.FontFamily="pack://application:,,,/FontAwesome.WPF;component/#FontAwesome" x:Name="btnDecreaseOrderingIndex" Height="76" Width="60" TabIndex="2" BorderThickness="10,0,0,0" TextOptions.TextFormattingMode="Display" Background="{DynamicResource ButtonBackgroundColor}" Click="btnDecreaseOrderingIndex_Click" >
+						<Button MouseEnter="btnDecreaseOrderingIndex_MouseEnter" MouseLeave="btnDecreaseOrderingIndex_MouseLeave" TextElement.FontSize="30" fa:Awesome.Content="ArrowUp" TextElement.FontFamily="pack://application:,,,/FontAwesome.WPF;component/#FontAwesome" x:Name="btnDecreaseOrderingIndex" Height="76" Width="60" TabIndex="2" BorderThickness="10,0,0,0" TextOptions.TextFormattingMode="Display" Background="{DynamicResource ButtonBackgroundColor}" Click="btnDecreaseOrderingIndex_Click" ToolTip="{x:Static s:Resources.loadEarlier}" >
 							<Button.BorderBrush>
 								<SolidColorBrush Color="{DynamicResource ButtonBorderLeftColor}"/>
 							</Button.BorderBrush>

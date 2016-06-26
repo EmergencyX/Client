@@ -236,4 +236,10 @@
   <data name="changeOrderingIndexDialogeTitle" xml:space="preserve">
     <value>Ladereihenfolge ändern</value>
   </data>
+  <data name="loadEarlier" xml:space="preserve">
+    <value>Früher laden</value>
+  </data>
+  <data name="loadLater" xml:space="preserve">
+    <value>Später laden</value>
+  </data>
 </root>

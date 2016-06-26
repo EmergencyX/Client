@@ -236,4 +236,10 @@
   <data name="changeOrderingIndexDialogeTitle" xml:space="preserve">
     <value>Change ordering index</value>
   </data>
+  <data name="loadEarlier" xml:space="preserve">
+    <value>Load earlier</value>
+  </data>
+  <data name="loadLater" xml:space="preserve">
+    <value>Load later</value>
+  </data>
 </root>

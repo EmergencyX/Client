@@ -254,5 +254,24 @@ namespace EmergencyX_Client
 			App.Current.Shutdown();
 		}
 
+		private void btnIncreaseOrderingIndex_MouseEnter(object sender, MouseEventArgs e)
+		{
+			btnIncreaseOrderingIndex.Foreground = new SolidColorBrush(Color.FromArgb(255, 8, 158, 221));
+		}
+
+		private void btnIncreaseOrderingIndex_MouseLeave(object sender, MouseEventArgs e)
+		{
+			btnIncreaseOrderingIndex.Foreground = new SolidColorBrush(Color.FromArgb(255, 0, 0, 0));
+		}
+
+		private void btnDecreaseOrderingIndex_MouseEnter(object sender, MouseEventArgs e)
+		{
+			btnDecreaseOrderingIndex.Foreground = new SolidColorBrush(Color.FromArgb(255, 8, 158, 221));
+		}
+
+		private void btnDecreaseOrderingIndex_MouseLeave(object sender, MouseEventArgs e)
+		{
+			btnDecreaseOrderingIndex.Foreground = new SolidColorBrush(Color.FromArgb(255, 0, 0, 0));
+		}
 	}
 }

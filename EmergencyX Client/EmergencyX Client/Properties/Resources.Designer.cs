@@ -223,6 +223,24 @@ namespace EmergencyX_Client.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Load earlier ähnelt.
+        /// </summary>
+        public static string loadEarlier {
+            get {
+                return ResourceManager.GetString("loadEarlier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Load later ähnelt.
+        /// </summary>
+        public static string loadLater {
+            get {
+                return ResourceManager.GetString("loadLater", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Login ähnelt.
         /// </summary>
         public static string login {
