@@ -20,10 +20,11 @@ namespace EmergencyX_Client
 	/// </summary>
 	public partial class LoginWindow : Window
 	{
-		DataPool dataContext {
+		DataPool dataContext
+		{
 			get { return DataContext as DataPool; }
 		}
-		
+
 		public LoginWindow()
 		{
 			InitializeComponent();

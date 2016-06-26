@@ -259,6 +259,15 @@ namespace EmergencyX_Client.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die _Manage screenshots ähnelt.
+        /// </summary>
+        public static string manageScreenshots {
+            get {
+                return ResourceManager.GetString("manageScreenshots", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die You are not logged in! ähnelt.
         /// </summary>
         public static string notLoggedIn {

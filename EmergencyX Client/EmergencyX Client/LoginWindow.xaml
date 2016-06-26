@@ -18,12 +18,12 @@
 		<Grid.Background>
 			<ImageBrush ImageSource="Properties/emergency5 2016-05-23 23-43-41-99.jpg"/>
 		</Grid.Background>
-		<Button x:Name="btnLogin" Content="{x:Static s:Resources.login}" HorizontalAlignment="Left" Margin="112,126,0,0" VerticalAlignment="Top" Width="75" Click="btnLogin_Click"/>
+		<Button x:Name="btnLogin" Content="{x:Static s:Resources.login}" HorizontalAlignment="Left" Margin="112,126,0,0" VerticalAlignment="Top" Width="75" Click="btnLogin_Click" TabIndex="3"/>
 		<TextBox x:Name="txbUsername" HorizontalAlignment="Left" Height="23" Margin="112,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TabIndex="0"/>
-		<PasswordBox x:Name="txbPassword" HorizontalAlignment="Left" Margin="112,57,0,0" VerticalAlignment="Top" Width="120" Height="23" TabIndex="2"/>
+		<PasswordBox x:Name="txbPassword" HorizontalAlignment="Left" Margin="112,57,0,0" VerticalAlignment="Top" Width="120" Height="23" TabIndex="1"/>
 		<Label x:Name="lblUsername" Content="{x:Static s:Resources.username}" HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top" Foreground="White"/>
 		<Label x:Name="lblPassword" Content="{x:Static s:Resources.password}" HorizontalAlignment="Left" Margin="10,54,0,0" VerticalAlignment="Top" Foreground="White"/>
-		<CheckBox x:Name="cbxRememberMe" Content="{x:Static s:Resources.rememberMe}" HorizontalAlignment="Left" Margin="112,92,0,0" VerticalAlignment="Top" Foreground="White"/>
+		<CheckBox x:Name="cbxRememberMe" Content="{x:Static s:Resources.rememberMe}" HorizontalAlignment="Left" Margin="112,92,0,0" VerticalAlignment="Top" Foreground="White" TabIndex="2"/>
 
 	</Grid>
 </Window>

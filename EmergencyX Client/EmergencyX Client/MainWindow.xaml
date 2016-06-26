@@ -154,6 +154,12 @@
 				</Button.BorderBrush>
 				<AccessText Text="{x:Static s:Resources.runEmergency}" />
 			</Button>
+			<Button Panel.ZIndex="100" x:Name="btnScreenshotBrowser" TabIndex="5" Margin="4,281,16,162" Height="74" BorderThickness="10,0,0,0" Background="White" Click="btnScreenshotBrowser_Click" >
+				<Button.BorderBrush>
+					<SolidColorBrush Color="{DynamicResource ButtonBorderLeftColor}"/>
+				</Button.BorderBrush>
+				<AccessText Text="{x:Static s:Resources.manageScreenshots}" />
+			</Button>
 		</Grid>
 		<Button x:Name="btnLogin" Content="Login" Grid.Column="1" HorizontalAlignment="Left" MinHeight="26" Margin="10,88,0,0" VerticalAlignment="Top"  Width="75" Click="btnLogin_Click" Background="{DynamicResource ButtonBackgroundColor}" BorderThickness="10,0,0,0" Padding="5">
 			<Button.BorderBrush>
