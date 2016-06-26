@@ -259,7 +259,7 @@ namespace EmergencyX_Client.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die _Manage screenshots ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Manage screenshots ähnelt.
         /// </summary>
         public static string manageScreenshots {
             get {

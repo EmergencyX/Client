@@ -242,4 +242,7 @@
   <data name="loadLater" xml:space="preserve">
     <value>Später laden</value>
   </data>
+  <data name="manageScreenshots" xml:space="preserve">
+    <value>Screenshots verwalten</value>
+  </data>
 </root>
