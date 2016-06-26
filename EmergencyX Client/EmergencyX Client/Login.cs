@@ -83,7 +83,7 @@ namespace EmergencyX_Client
 			// SSL Crt (should been placed in Solution Dir with Build Option Copy always)
 			//
 			SslCredentials cred = new SslCredentials(File.ReadAllText("server.crt"));
-			
+
 			// new Channel and then a new client based on that Channel
 			//
 			var connectionChannel = new Channel("beta.emergencyx.de:50051", cred);
@@ -96,7 +96,7 @@ namespace EmergencyX_Client
 
 			//Save the responded date to re-login the user every program session until he logs out
 			//
-			AppConfig.writeToAppConfig("rememberMe",remember.ToString());
+			AppConfig.writeToAppConfig("rememberMe", remember.ToString());
 			AppConfig.writeToAppConfig("userId", response.UserId.ToString());
 			AppConfig.writeToAppConfig("token", response.Token);
 			AppConfig.writeToAppConfig("username", request.Username);
@@ -104,11 +104,11 @@ namespace EmergencyX_Client
 			//All done
 			//
 			connectionChannel.ShutdownAsync().Wait();
-			if(response.Success != true)
+			if (response.Success != true)
 			{
 				throw new NotSuccessFullLoggedInException();
 			}
-			
+
 		}
 
 		/// <summary>
@@ -130,7 +130,7 @@ namespace EmergencyX_Client
 
 			connectionChannel.ShutdownAsync().Wait();
 
-			if(response.Success != true)
+			if (response.Success != true)
 			{
 				throw new NotSuccessFullLoggedInException();
 			}

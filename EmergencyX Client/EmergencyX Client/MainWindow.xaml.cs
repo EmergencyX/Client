@@ -25,7 +25,7 @@ namespace EmergencyX_Client
 	public partial class MainWindow : Window
 	{
 
-		DataPool dataContext 
+		DataPool dataContext
 		{
 			get { return DataContext as DataPool; }
 		}
@@ -119,10 +119,10 @@ namespace EmergencyX_Client
 		private void ModListContainerMouseDown(object sender, MouseButtonEventArgs e)
 		{
 			if (e.LeftButton == MouseButtonState.Pressed)
-			{ 
+			{
 				liModificationList.UnselectAll();
-				if (txbSuccessfullSaved.IsVisible == true) 
-				{ 
+				if (txbSuccessfullSaved.IsVisible == true)
+				{
 					txbSuccessfullSaved.Visibility = Visibility.Hidden;
 				}
 			}
@@ -151,7 +151,7 @@ namespace EmergencyX_Client
 		{
 			//  if nothing is selected
 			//
-			if (liModificationList.SelectedIndex == -1 | (liModificationList.SelectedIndex == dataContext.InstalledMods.Count - 1) )
+			if (liModificationList.SelectedIndex == -1 | (liModificationList.SelectedIndex == dataContext.InstalledMods.Count - 1))
 			{
 				MessageBox.Show("Übersetzung", Properties.Resources.changeOrderingIndexDialogeTitle, MessageBoxButton.OK, MessageBoxImage.Error);
 				return;
@@ -214,12 +214,14 @@ namespace EmergencyX_Client
 
 			EmergencyInstallation myEmergencyInstallation = new EmergencyInstallation();
 
-			try { 
-				
-				System.Diagnostics.Process.Start(myEmergencyInstallation.getEmergencyInstallationPath() + @"\bin\em5_launcher.exe");
-			} catch (Exception ex)
+			try
 			{
-				MessageBox.Show(ex.Message,"Error",MessageBoxButton.OK,MessageBoxImage.Error);
+
+				System.Diagnostics.Process.Start(myEmergencyInstallation.getEmergencyInstallationPath() + @"\bin\em5_launcher.exe");
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 			}
 		}
 
@@ -243,6 +245,17 @@ namespace EmergencyX_Client
 		private void btnLogout_Click(object sender, RoutedEventArgs e)
 		{
 
+		}
+
+		/// <summary>
+		/// Opens the screenshot window
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void btnScreenshotBrowser_Click(object sender, RoutedEventArgs e)
+		{
+			dataContext.ScreenshotWindow = new ScreenshotWindow();
+			dataContext.ScreenshotWindow.Show();
 		}
 
 		#endregion ClickEvents

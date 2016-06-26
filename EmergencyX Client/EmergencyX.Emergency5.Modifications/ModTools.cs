@@ -145,11 +145,11 @@ namespace EmergencyX.Emergency5.Modifications
 		{
 			//only change somethint if not the last object was selected
 			//
-			if(modIndex == installed.Count - 1 )
+			if (modIndex == installed.Count - 1)
 			{
 				return false;
 			}
-			
+
 			// store the name of the modifications which currently has the new ordering index (mod Index = Ordering Index
 			// because of calculation plus on and the list, the indexes and also the Collection counts from zero
 			//

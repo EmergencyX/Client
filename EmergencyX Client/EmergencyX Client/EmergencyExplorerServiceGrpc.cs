@@ -7,156 +7,157 @@ using System.Threading;
 using System.Threading.Tasks;
 using Grpc.Core;
 
-namespace  EmergencyXService {
-  public static class EmergencyExplorerService
-  {
-    static readonly string __ServiceName = "EmergencyExplorerService";
+namespace EmergencyXService
+{
+	public static class EmergencyExplorerService
+	{
+		static readonly string __ServiceName = "EmergencyExplorerService";
 
-    static readonly Marshaller<global::LoginRequest> __Marshaller_LoginRequest = Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::LoginRequest.Parser.ParseFrom);
-    static readonly Marshaller<global::LoginResponse> __Marshaller_LoginResponse = Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::LoginResponse.Parser.ParseFrom);
-    static readonly Marshaller<global::LoginWithTokenRequest> __Marshaller_LoginWithTokenRequest = Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::LoginWithTokenRequest.Parser.ParseFrom);
+		static readonly Marshaller<global::LoginRequest> __Marshaller_LoginRequest = Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::LoginRequest.Parser.ParseFrom);
+		static readonly Marshaller<global::LoginResponse> __Marshaller_LoginResponse = Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::LoginResponse.Parser.ParseFrom);
+		static readonly Marshaller<global::LoginWithTokenRequest> __Marshaller_LoginWithTokenRequest = Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::LoginWithTokenRequest.Parser.ParseFrom);
 
-    static readonly Method<global::LoginRequest, global::LoginResponse> __Method_Login = new Method<global::LoginRequest, global::LoginResponse>(
-        MethodType.Unary,
-        __ServiceName,
-        "Login",
-        __Marshaller_LoginRequest,
-        __Marshaller_LoginResponse);
+		static readonly Method<global::LoginRequest, global::LoginResponse> __Method_Login = new Method<global::LoginRequest, global::LoginResponse>(
+		    MethodType.Unary,
+		    __ServiceName,
+		    "Login",
+		    __Marshaller_LoginRequest,
+		    __Marshaller_LoginResponse);
 
-    static readonly Method<global::LoginWithTokenRequest, global::LoginResponse> __Method_LoginWithToken = new Method<global::LoginWithTokenRequest, global::LoginResponse>(
-        MethodType.Unary,
-        __ServiceName,
-        "LoginWithToken",
-        __Marshaller_LoginWithTokenRequest,
-        __Marshaller_LoginResponse);
+		static readonly Method<global::LoginWithTokenRequest, global::LoginResponse> __Method_LoginWithToken = new Method<global::LoginWithTokenRequest, global::LoginResponse>(
+		    MethodType.Unary,
+		    __ServiceName,
+		    "LoginWithToken",
+		    __Marshaller_LoginWithTokenRequest,
+		    __Marshaller_LoginResponse);
 
-    /// <summary>Service descriptor</summary>
-    public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
-    {
-      get { return global::EmergencyExplorerServiceReflection.Descriptor.Services[0]; }
-    }
+		/// <summary>Service descriptor</summary>
+		public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
+		{
+			get { return global::EmergencyExplorerServiceReflection.Descriptor.Services[0]; }
+		}
 
-    /// <summary>Client for EmergencyExplorerService</summary>
-    [System.Obsolete("Client side interfaced will be removed in the next release. Use client class directly.")]
-    public interface IEmergencyExplorerServiceClient
-    {
-      global::LoginResponse Login(global::LoginRequest request, Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken));
-      global::LoginResponse Login(global::LoginRequest request, CallOptions options);
-      AsyncUnaryCall<global::LoginResponse> LoginAsync(global::LoginRequest request, Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken));
-      AsyncUnaryCall<global::LoginResponse> LoginAsync(global::LoginRequest request, CallOptions options);
-      global::LoginResponse LoginWithToken(global::LoginWithTokenRequest request, Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken));
-      global::LoginResponse LoginWithToken(global::LoginWithTokenRequest request, CallOptions options);
-      AsyncUnaryCall<global::LoginResponse> LoginWithTokenAsync(global::LoginWithTokenRequest request, Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken));
-      AsyncUnaryCall<global::LoginResponse> LoginWithTokenAsync(global::LoginWithTokenRequest request, CallOptions options);
-    }
+		/// <summary>Client for EmergencyExplorerService</summary>
+		[System.Obsolete("Client side interfaced will be removed in the next release. Use client class directly.")]
+		public interface IEmergencyExplorerServiceClient
+		{
+			global::LoginResponse Login(global::LoginRequest request, Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken));
+			global::LoginResponse Login(global::LoginRequest request, CallOptions options);
+			AsyncUnaryCall<global::LoginResponse> LoginAsync(global::LoginRequest request, Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken));
+			AsyncUnaryCall<global::LoginResponse> LoginAsync(global::LoginRequest request, CallOptions options);
+			global::LoginResponse LoginWithToken(global::LoginWithTokenRequest request, Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken));
+			global::LoginResponse LoginWithToken(global::LoginWithTokenRequest request, CallOptions options);
+			AsyncUnaryCall<global::LoginResponse> LoginWithTokenAsync(global::LoginWithTokenRequest request, Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken));
+			AsyncUnaryCall<global::LoginResponse> LoginWithTokenAsync(global::LoginWithTokenRequest request, CallOptions options);
+		}
 
-    /// <summary>Interface of server-side implementations of EmergencyExplorerService</summary>
-    [System.Obsolete("Service implementations should inherit from the generated abstract base class instead.")]
-    public interface IEmergencyExplorerService
-    {
-      global::System.Threading.Tasks.Task<global::LoginResponse> Login(global::LoginRequest request, ServerCallContext context);
-      global::System.Threading.Tasks.Task<global::LoginResponse> LoginWithToken(global::LoginWithTokenRequest request, ServerCallContext context);
-    }
+		/// <summary>Interface of server-side implementations of EmergencyExplorerService</summary>
+		[System.Obsolete("Service implementations should inherit from the generated abstract base class instead.")]
+		public interface IEmergencyExplorerService
+		{
+			global::System.Threading.Tasks.Task<global::LoginResponse> Login(global::LoginRequest request, ServerCallContext context);
+			global::System.Threading.Tasks.Task<global::LoginResponse> LoginWithToken(global::LoginWithTokenRequest request, ServerCallContext context);
+		}
 
-    /// <summary>Base class for server-side implementations of EmergencyExplorerService</summary>
-    public abstract class EmergencyExplorerServiceBase
-    {
-      public virtual global::System.Threading.Tasks.Task<global::LoginResponse> Login(global::LoginRequest request, ServerCallContext context)
-      {
-        throw new RpcException(new Status(StatusCode.Unimplemented, ""));
-      }
+		/// <summary>Base class for server-side implementations of EmergencyExplorerService</summary>
+		public abstract class EmergencyExplorerServiceBase
+		{
+			public virtual global::System.Threading.Tasks.Task<global::LoginResponse> Login(global::LoginRequest request, ServerCallContext context)
+			{
+				throw new RpcException(new Status(StatusCode.Unimplemented, ""));
+			}
 
-      public virtual global::System.Threading.Tasks.Task<global::LoginResponse> LoginWithToken(global::LoginWithTokenRequest request, ServerCallContext context)
-      {
-        throw new RpcException(new Status(StatusCode.Unimplemented, ""));
-      }
+			public virtual global::System.Threading.Tasks.Task<global::LoginResponse> LoginWithToken(global::LoginWithTokenRequest request, ServerCallContext context)
+			{
+				throw new RpcException(new Status(StatusCode.Unimplemented, ""));
+			}
 
-    }
+		}
 
-    /// <summary>Client for EmergencyExplorerService</summary>
-    #pragma warning disable 0618
-    public class EmergencyExplorerServiceClient : ClientBase<EmergencyExplorerServiceClient>, IEmergencyExplorerServiceClient
-    #pragma warning restore 0618
-    {
-      public EmergencyExplorerServiceClient(Channel channel) : base(channel)
-      {
-      }
-      public EmergencyExplorerServiceClient(CallInvoker callInvoker) : base(callInvoker)
-      {
-      }
-      ///<summary>Protected parameterless constructor to allow creation of test doubles.</summary>
-      protected EmergencyExplorerServiceClient() : base()
-      {
-      }
-      ///<summary>Protected constructor to allow creation of configured clients.</summary>
-      protected EmergencyExplorerServiceClient(ClientBaseConfiguration configuration) : base(configuration)
-      {
-      }
+		/// <summary>Client for EmergencyExplorerService</summary>
+#pragma warning disable 0618
+		public class EmergencyExplorerServiceClient : ClientBase<EmergencyExplorerServiceClient>, IEmergencyExplorerServiceClient
+#pragma warning restore 0618
+		{
+			public EmergencyExplorerServiceClient(Channel channel) : base(channel)
+			{
+			}
+			public EmergencyExplorerServiceClient(CallInvoker callInvoker) : base(callInvoker)
+			{
+			}
+			///<summary>Protected parameterless constructor to allow creation of test doubles.</summary>
+			protected EmergencyExplorerServiceClient() : base()
+			{
+			}
+			///<summary>Protected constructor to allow creation of configured clients.</summary>
+			protected EmergencyExplorerServiceClient(ClientBaseConfiguration configuration) : base(configuration)
+			{
+			}
 
-      public virtual global::LoginResponse Login(global::LoginRequest request, Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
-      {
-        return Login(request, new CallOptions(headers, deadline, cancellationToken));
-      }
-      public virtual global::LoginResponse Login(global::LoginRequest request, CallOptions options)
-      {
-        return CallInvoker.BlockingUnaryCall(__Method_Login, null, options, request);
-      }
-      public virtual AsyncUnaryCall<global::LoginResponse> LoginAsync(global::LoginRequest request, Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
-      {
-        return LoginAsync(request, new CallOptions(headers, deadline, cancellationToken));
-      }
-      public virtual AsyncUnaryCall<global::LoginResponse> LoginAsync(global::LoginRequest request, CallOptions options)
-      {
-        return CallInvoker.AsyncUnaryCall(__Method_Login, null, options, request);
-      }
-      public virtual global::LoginResponse LoginWithToken(global::LoginWithTokenRequest request, Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
-      {
-        return LoginWithToken(request, new CallOptions(headers, deadline, cancellationToken));
-      }
-      public virtual global::LoginResponse LoginWithToken(global::LoginWithTokenRequest request, CallOptions options)
-      {
-        return CallInvoker.BlockingUnaryCall(__Method_LoginWithToken, null, options, request);
-      }
-      public virtual AsyncUnaryCall<global::LoginResponse> LoginWithTokenAsync(global::LoginWithTokenRequest request, Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
-      {
-        return LoginWithTokenAsync(request, new CallOptions(headers, deadline, cancellationToken));
-      }
-      public virtual AsyncUnaryCall<global::LoginResponse> LoginWithTokenAsync(global::LoginWithTokenRequest request, CallOptions options)
-      {
-        return CallInvoker.AsyncUnaryCall(__Method_LoginWithToken, null, options, request);
-      }
-      protected override EmergencyExplorerServiceClient NewInstance(ClientBaseConfiguration configuration)
-      {
-        return new EmergencyExplorerServiceClient(configuration);
-      }
-    }
+			public virtual global::LoginResponse Login(global::LoginRequest request, Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+			{
+				return Login(request, new CallOptions(headers, deadline, cancellationToken));
+			}
+			public virtual global::LoginResponse Login(global::LoginRequest request, CallOptions options)
+			{
+				return CallInvoker.BlockingUnaryCall(__Method_Login, null, options, request);
+			}
+			public virtual AsyncUnaryCall<global::LoginResponse> LoginAsync(global::LoginRequest request, Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+			{
+				return LoginAsync(request, new CallOptions(headers, deadline, cancellationToken));
+			}
+			public virtual AsyncUnaryCall<global::LoginResponse> LoginAsync(global::LoginRequest request, CallOptions options)
+			{
+				return CallInvoker.AsyncUnaryCall(__Method_Login, null, options, request);
+			}
+			public virtual global::LoginResponse LoginWithToken(global::LoginWithTokenRequest request, Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+			{
+				return LoginWithToken(request, new CallOptions(headers, deadline, cancellationToken));
+			}
+			public virtual global::LoginResponse LoginWithToken(global::LoginWithTokenRequest request, CallOptions options)
+			{
+				return CallInvoker.BlockingUnaryCall(__Method_LoginWithToken, null, options, request);
+			}
+			public virtual AsyncUnaryCall<global::LoginResponse> LoginWithTokenAsync(global::LoginWithTokenRequest request, Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+			{
+				return LoginWithTokenAsync(request, new CallOptions(headers, deadline, cancellationToken));
+			}
+			public virtual AsyncUnaryCall<global::LoginResponse> LoginWithTokenAsync(global::LoginWithTokenRequest request, CallOptions options)
+			{
+				return CallInvoker.AsyncUnaryCall(__Method_LoginWithToken, null, options, request);
+			}
+			protected override EmergencyExplorerServiceClient NewInstance(ClientBaseConfiguration configuration)
+			{
+				return new EmergencyExplorerServiceClient(configuration);
+			}
+		}
 
-    /// <summary>Creates a new client for EmergencyExplorerService</summary>
-    public static EmergencyExplorerServiceClient NewClient(Channel channel)
-    {
-      return new EmergencyExplorerServiceClient(channel);
-    }
+		/// <summary>Creates a new client for EmergencyExplorerService</summary>
+		public static EmergencyExplorerServiceClient NewClient(Channel channel)
+		{
+			return new EmergencyExplorerServiceClient(channel);
+		}
 
-    /// <summary>Creates service definition that can be registered with a server</summary>
-    #pragma warning disable 0618
-    public static ServerServiceDefinition BindService(IEmergencyExplorerService serviceImpl)
-    #pragma warning restore 0618
-    {
-      return ServerServiceDefinition.CreateBuilder(__ServiceName)
-          .AddMethod(__Method_Login, serviceImpl.Login)
-          .AddMethod(__Method_LoginWithToken, serviceImpl.LoginWithToken).Build();
-    }
+		/// <summary>Creates service definition that can be registered with a server</summary>
+#pragma warning disable 0618
+		public static ServerServiceDefinition BindService(IEmergencyExplorerService serviceImpl)
+#pragma warning restore 0618
+		{
+			return ServerServiceDefinition.CreateBuilder(__ServiceName)
+			    .AddMethod(__Method_Login, serviceImpl.Login)
+			    .AddMethod(__Method_LoginWithToken, serviceImpl.LoginWithToken).Build();
+		}
 
-    /// <summary>Creates service definition that can be registered with a server</summary>
-    #pragma warning disable 0618
-    public static ServerServiceDefinition BindService(EmergencyExplorerServiceBase serviceImpl)
-    #pragma warning restore 0618
-    {
-      return ServerServiceDefinition.CreateBuilder(__ServiceName)
-          .AddMethod(__Method_Login, serviceImpl.Login)
-          .AddMethod(__Method_LoginWithToken, serviceImpl.LoginWithToken).Build();
-    }
+		/// <summary>Creates service definition that can be registered with a server</summary>
+#pragma warning disable 0618
+		public static ServerServiceDefinition BindService(EmergencyExplorerServiceBase serviceImpl)
+#pragma warning restore 0618
+		{
+			return ServerServiceDefinition.CreateBuilder(__ServiceName)
+			    .AddMethod(__Method_Login, serviceImpl.Login)
+			    .AddMethod(__Method_LoginWithToken, serviceImpl.LoginWithToken).Build();
+		}
 
-  }
+	}
 }
 #endregion

@@ -236,4 +236,7 @@
   <data name="changeOrderingIndexDialogeTitle" xml:space="preserve">
     <value>Change ordering index</value>
   </data>
+  <data name="manageScreenshots" xml:space="preserve">
+    <value>_Manage screenshots</value>
+  </data>
 </root>

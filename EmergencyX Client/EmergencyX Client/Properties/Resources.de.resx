@@ -236,4 +236,7 @@
   <data name="changeOrderingIndexDialogeTitle" xml:space="preserve">
     <value>Ladereihenfolge ändern</value>
   </data>
+  <data name="manageScreenshots" xml:space="preserve">
+    <value>_Screenshots verwalten</value>
+  </data>
 </root>

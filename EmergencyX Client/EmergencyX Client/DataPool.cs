@@ -19,8 +19,10 @@ namespace EmergencyX_Client
 		private SortableObservableCollection<InstalledMod> installedMods;
 		private string appDataModificationsJsonFile;
 		private string modificationsDir;
+		private string screenshotsDir;
 		private EmergencyInstallation emergencyInstallation;
 		private MainWindow mainWindow;
+		private ScreenshotWindow screenshotWindow;
 
 		// property changed
 		//
@@ -105,6 +107,31 @@ namespace EmergencyX_Client
 				mainWindow = value;
 			}
 		}
+		public ScreenshotWindow ScreenshotWindow
+		{
+			get
+			{
+				return screenshotWindow;
+			}
+
+			set
+			{
+				screenshotWindow = value;
+			}
+		}
+		public string ScreenshotsDir
+		{
+			get
+			{
+				return screenshotsDir;
+			}
+
+			set
+			{
+				screenshotsDir = value;
+				NotifyPropertyChanged();
+			}
+		}
 
 		// Constructer
 		//
@@ -116,11 +143,14 @@ namespace EmergencyX_Client
 			//Define mod folder path
 			//
 			modificationsDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Promotion Software GmbH\EMERGENCY 5\mods";
+			//Define screenshot dir
+			//
+			ScreenshotsDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Promotion Software GmbH\EMERGENCY 5\screenshot";
 		}
 
-		public void loginWithUsernameUpdate(string username,string password, bool remainLoggedIn)
+		public void loginWithUsernameUpdate(string username, string password, bool remainLoggedIn)
 		{
-			
+
 			this.Login.FullLogin(username, password, remainLoggedIn); // do login
 			this.Login.UserName = username; // update username to display it in the ui
 			this.MainWindow.btnLogin.Visibility = System.Windows.Visibility.Hidden; //hidde login button
