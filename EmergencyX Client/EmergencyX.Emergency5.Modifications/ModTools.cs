@@ -60,7 +60,18 @@ namespace EmergencyX.Emergency5.Modifications
 					i++;
 				}
 
-				InstalledMod currentMod = new InstalledMod(modName, modOption[0], modOption[1]);
+				bool active;
+
+				if(modOption[0].Equals("true"))
+				{
+					active = true;
+				} else
+				{
+					active = false;
+				}
+
+
+				InstalledMod currentMod = new InstalledMod(modName, active, modOption[1]);
 				this.InstalledModifications.Add(currentMod);
 
 			}
@@ -80,7 +91,7 @@ namespace EmergencyX.Emergency5.Modifications
 		/// <param name="modName">The name of the mod</param>
 		/// <param name="activ">"true" or "false"</param>
 		/// <param name="order">The "OrderingIndex"</param>
-		public void addModification(string modName, string activ, string order)
+		public void addModification(string modName, bool activ, string order)
 		{
 			this.InstalledModifications.Add(new InstalledMod(modName, activ, order));
 			this.installedModifications.Sort(x => x.OrderingIndex, ListSortDirection.Ascending);
@@ -114,13 +125,13 @@ namespace EmergencyX.Emergency5.Modifications
 		/// <returns></returns>
 		public static bool modifyModActivityState(int modIndex, SortableObservableCollection<InstalledMod> installed)
 		{
-			if (installed[modIndex].Enabled == "false")
+			if (installed[modIndex].Enabled == false)
 			{
-				installed[modIndex].Enabled = "true";
+				installed[modIndex].Enabled = true;
 			}
-			else if (installed[modIndex].Enabled == "true")
+			else if (installed[modIndex].Enabled == true)
 			{
-				installed[modIndex].Enabled = "false";
+				installed[modIndex].Enabled = false;
 			}
 			else
 			{
@@ -206,7 +217,7 @@ namespace EmergencyX.Emergency5.Modifications
 
 				//Getting mod Options and preparing them for saving
 				//
-				options[0] = mod.Enabled;
+				options[0] = mod.Enabled.ToString().ToLower();
 				options[1] = mod.OrderingIndex;
 
 				optionStorage.Add("Enabled", options[0]);

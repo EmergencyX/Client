@@ -193,17 +193,6 @@ namespace EmergencyX_Client
 
 		}
 
-		private void btnAcivated_Click(object sender, RoutedEventArgs e)
-		{
-			ModTools.modifyModActivityState(liModificationList.SelectedIndex, dataContext.InstalledMods);
-
-			if (ModTools.writeJsonModFile(dataContext.InstalledMods, dataContext.AppDataModificationsJsonFile))
-			{
-				txbSuccessfullSaved.Text = Properties.Resources.changesSuccessfullSaved;
-				txbSuccessfullSaved.Visibility = Visibility.Visible;
-			}
-		}
-
 		/// <summary>
 		/// Runs Emergency 5
 		/// </summary>
@@ -211,6 +200,7 @@ namespace EmergencyX_Client
 		/// <param name="e"></param>
 		private void btn_RunEmergency_Click(object sender, RoutedEventArgs e)
 		{
+			ModTools.writeJsonModFile(dataContext.InstalledMods, dataContext.AppDataModificationsJsonFile);
 
 			EmergencyInstallation myEmergencyInstallation = new EmergencyInstallation();
 
@@ -264,9 +254,11 @@ namespace EmergencyX_Client
 		//
 		private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
 		{
+			ModTools.writeJsonModFile(dataContext.InstalledMods, dataContext.AppDataModificationsJsonFile);
 			App.Current.Shutdown();
 		}
 
+		#region HoverForUpDownButtons
 		private void btnIncreaseOrderingIndex_MouseEnter(object sender, MouseEventArgs e)
 		{
 			btnIncreaseOrderingIndex.Foreground = new SolidColorBrush(Color.FromArgb(255, 8, 158, 221));
@@ -286,5 +278,7 @@ namespace EmergencyX_Client
 		{
 			btnDecreaseOrderingIndex.Foreground = new SolidColorBrush(Color.FromArgb(255, 0, 0, 0));
 		}
+
+		#endregion HoverForUpDownButtons
 	}
 }

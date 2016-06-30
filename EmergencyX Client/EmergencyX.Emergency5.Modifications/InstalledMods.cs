@@ -12,7 +12,7 @@ namespace EmergencyX.Emergency5.Modifications
 	{
 
 		private string modificationName;
-		private string enabled;
+		private bool enabled;
 		private string orderingIndex;
 
 		#region Propertys
@@ -31,7 +31,7 @@ namespace EmergencyX.Emergency5.Modifications
 			}
 		}
 
-		public string Enabled
+		public bool Enabled
 		{
 			get
 			{
@@ -61,7 +61,7 @@ namespace EmergencyX.Emergency5.Modifications
 
 		#endregion Propertys
 
-		public InstalledMod(string name, string activ, string order)
+		public InstalledMod(string name, bool activ, string order)
 		{
 			this.ModificationName = name;
 			this.Enabled = activ;
