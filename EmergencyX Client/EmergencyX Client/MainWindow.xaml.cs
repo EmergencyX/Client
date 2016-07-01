@@ -46,6 +46,7 @@ namespace EmergencyX_Client
 			dataContext.EmergencyInstallation = new EmergencyInstallation();
 			dataContext.Login = new Login();
 			dataContext.InstalledMods = dataContext.ModTools.getInstalledModifications();
+			dataContext.Watcher = new FileSystemWatcher();
 			dataContext.MainWindow = this;
 
 			//initial value for username
@@ -65,6 +66,14 @@ namespace EmergencyX_Client
 				lblEmergencyNotInstalled.Visibility = Visibility.Hidden;
 			else
 				liModificationList.Visibility = Visibility.Hidden;
+
+			// FileWatcher for App.config stuff
+			//
+			dataContext.Watcher.Path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location); // Pretty long...
+			dataContext.Watcher.Filter = "EmergencyX Client.exe.config";
+			dataContext.Watcher.NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.FileName | NotifyFilters.DirectoryName;
+			dataContext.Watcher.EnableRaisingEvents = true;
+			dataContext.Watcher.Changed += this.OnFileChange;
 
 			//check weather user is logged in or not
 			//
@@ -86,35 +95,8 @@ namespace EmergencyX_Client
 
 			}
 		}
+
 		#endregion constructor
-
-		//#region updateSpecificWindowData
-		//public void updateSpecificWindowData()
-		//{
-		//	//Read Text from description in AssemblyInfo.cs and display it while app is running
-		//	//Version.Text = ((System.Reflection.AssemblyDescriptionAttribute)System.Reflection.Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(System.Reflection.AssemblyDescriptionAttribute), false)[0]).Description;
-
-		//	//if Emergency 5 is installed and no mods are installed the text "Emergency is installed" should be displayed
-		//	//if its insatlled and there are mods the mods should be displayed 
-		//	//otherwise there should be the text "Emergency is not installed"
-		//	//
-
-		//	//holds the full path to appdata mod 
-
-		//	//if somewhere (somehow) an emergency installation is found and this installation could been verified
-		//	if (EmergencyInstallation.getIsEmergencyInstalled() && myEmergencyInstallation.verifyEmergencyInstallation(myEmergencyInstallation.getEmergencyInstallationPath()))
-		//	{
-		//		this.InstalledMods = mainWindowModTools.getInstalledModifications();
-
-		//	}
-		//	else
-		//	{
-		//		// if not display the text "Emergency is not installed" and dis able the list
-		//		//lblIsEmergencyInstalled.Content = Properties.Resources.emergencyIsNotInstalled;
-
-		//	}
-		//}
-		//#endregion updateSpecificWindowData
 
 		private void ModListContainerMouseDown(object sender, MouseButtonEventArgs e)
 		{
@@ -280,5 +262,40 @@ namespace EmergencyX_Client
 		}
 
 		#endregion HoverForUpDownButtons
+
+		/// <summary>
+		/// Event Handler for onFileChanged for our FileWatcher which is watching our app config
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void OnFileChange(object sender, FileSystemEventArgs e)
+		{
+			string usrname = AppConfig.readFromAppConfig("username");
+			string appConfLogin = AppConfig.readFromAppConfig("login");
+			if ( ( (!usrname.Equals("") || !usrname.Equals(" ") ) && appConfLogin.Equals("success")) )
+			{
+				this.dataContext.Login.UserName = usrname; // update username to display it in the ui
+				this.btnLogin.Visibility = System.Windows.Visibility.Hidden; //hidde login button
+				this.btnLogout.Visibility = System.Windows.Visibility.Visible; //show logout button
+				this.txbSuccessfullSaved.Text = Properties.Resources.successFullLoggedIn; // notify user that all is nice
+
+				// set login key in app.conig to null
+				// reasone for that: if something in the app conf changs, this check obove will not be enabled again
+				//
+				AppConfig.writeToAppConfig("login", ""); 
+			}
+
+			if(appConfLogin.Equals("error")) 
+			{
+				// Inform user about problem
+				//
+				MessageBox.Show("L10N", "L10N", MessageBoxButton.OK, MessageBoxImage.Error);
+
+				// set login key in app.conig to null
+				// reasone for that: if something in the app conf changs, this check obove will not be enabled again
+				//
+				AppConfig.writeToAppConfig("login", "");
+			}
+		}
 	}
 }

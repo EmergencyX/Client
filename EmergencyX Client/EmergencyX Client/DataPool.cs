@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using EmergencyX.Emergency5.Modifications;
 using System.Windows.Controls;
+using System.IO;
 
 namespace EmergencyX_Client
 {
@@ -23,6 +24,7 @@ namespace EmergencyX_Client
 		private EmergencyInstallation emergencyInstallation;
 		private MainWindow mainWindow;
 		private ScreenshotWindow screenshotWindow;
+		private FileSystemWatcher watcher;
 
 		// property changed
 		//
@@ -132,6 +134,19 @@ namespace EmergencyX_Client
 				NotifyPropertyChanged();
 			}
 		}
+		public FileSystemWatcher Watcher
+		{
+			get
+			{
+				return watcher;
+			}
+
+			set
+			{
+				watcher = value;
+				NotifyPropertyChanged();
+			}
+		}
 
 		// Constructer
 		//
@@ -152,10 +167,6 @@ namespace EmergencyX_Client
 		{
 
 			this.Login.FullLogin(username, password, remainLoggedIn); // do login
-			this.Login.UserName = username; // update username to display it in the ui
-			this.MainWindow.btnLogin.Visibility = System.Windows.Visibility.Hidden; //hidde login button
-			this.MainWindow.btnLogout.Visibility = System.Windows.Visibility.Visible; //show logout button
-			this.MainWindow.txbSuccessfullSaved.Text = Properties.Resources.successFullLoggedIn; // notify user that all is nice
 		}
 
 

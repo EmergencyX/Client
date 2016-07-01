@@ -94,20 +94,25 @@ namespace EmergencyX_Client
 			LoginRequest request = new LoginRequest { Username = username, Password = password, RememberMe = remember };
 			LoginResponse response = await emx.LoginAsync(request);
 
+			// stop if no success...
+			// 
+			if (response.Success != true)
+			{
+				AppConfig.writeToAppConfig("login", "error");
+				throw new NotSuccessFullLoggedInException();
+			}
+
 			//Save the responded date to re-login the user every program session until he logs out
 			//
 			AppConfig.writeToAppConfig("rememberMe", remember.ToString());
 			AppConfig.writeToAppConfig("userId", response.UserId.ToString());
 			AppConfig.writeToAppConfig("token", response.Token);
 			AppConfig.writeToAppConfig("username", request.Username);
+			AppConfig.writeToAppConfig("login", "success");
 
 			//All done
 			//
 			connectionChannel.ShutdownAsync().Wait();
-			if (response.Success != true)
-			{
-				throw new NotSuccessFullLoggedInException();
-			}
 
 		}
 
